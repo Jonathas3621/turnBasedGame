@@ -17,7 +17,7 @@
 
 ## SISTEMA DE CLASSES:
 
-* Mago, Tanques, Atirador, Ferreiro, Ladino, Monge, Bruxo, Espadachim, alquimista. &nbsp;
+* Mago, Tanque, Atirador, Ferreiro, Ladino, Monge, Bruxo, Espadachim, Alquimista, Guerreiro. &nbsp;
 
 **obs:pesquisador, necromante, invocador** 
 
