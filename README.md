@@ -1,6 +1,7 @@
 # **Detalhes do jogo**
 
-&nbsp; &nbsp;
+&nbsp;
+##
 
 ## ESTILO GERAL:
 
@@ -11,7 +12,8 @@
 
 **obs: Modo História**
 
-&nbsp; --- &nbsp;
+&nbsp;
+##
 
 ## SISTEMA DE CLASSES:
 
@@ -19,4 +21,5 @@
 
 **obs:pesquisador, necromante, invocador** 
 
-&nbsp; --- &nbsp;
+&nbsp;
+##
