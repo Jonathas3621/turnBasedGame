@@ -1,6 +1,6 @@
 # **Detalhes do jogo**
 
-&nbsp; --- &nbsp;
+&nbsp; &nbsp;
 
 ## ESTILO GERAL:
 
