@@ -26,7 +26,7 @@
 
 ## ELEMENTOS DE MAGIA:
 
-* Fogo, Água, Terra, Ar, Eletricidade, Netureza, vida, morte, antimagia.
+* Fogo, Água, Terra, Ar, Eletricidade, Netureza, Vida, Morte, Antimagia.
 
 &nbsp;
 ##
