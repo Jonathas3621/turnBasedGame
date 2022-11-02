@@ -66,6 +66,9 @@
 
 **Obs: Criação de histórias de personagens, itens, invocações.**
 
+&nbsp;
+##
+
 ## FRENTES DE TRABALHO: 
 
  1. Logística;
