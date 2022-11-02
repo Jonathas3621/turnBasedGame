@@ -19,7 +19,7 @@
 
 * Mago, Tanque, Atirador, Ferreiro, Ladino, Monge, Bruxo, Espadachim, Alquimista, Guerreiro. &nbsp;
 
-**obs:pesquisador, necromante, invocador** 
+**obs: pesquisador, necromante, invocador** 
 
 &nbsp;
 ##
