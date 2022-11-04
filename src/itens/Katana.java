@@ -3,18 +3,18 @@ package itens;
 import abstractitens.EspadaGrande;
 
 public class Katana extends EspadaGrande{
-	String[] afinidades = {};
-	String[] classes = {"Espadachim"};
+	
 	public Katana() {
-		super("Katana", 		// nome
-				0.75,			// peso
-				"comum",		// raridade
-				new String[0],	// afinidades
-				"",				// efeito_desc
-				"Posso sentir meu sangue ancestral correndo em minhas veias!!!", // desc
-				13,				// dano
-				5,				// estamina
-				3);	// velocidade
+		super();
+		this.nome = "Katana"; 				// nome
+		this.dano =	13;						// dano
+		this.estamina = 5;					// estamina
+		this.velocidade = 3;				// velocidade
+		this.peso =	0.75;					// peso
+		this.afinidades = new String[0];	// afinidades
+		this.raridade =	"comum";			// raridade
+		this.efeito_Desc = "";				// efeito_desc
+		this.desc = "Posso sentir meu sangue ancestral correndo em minhas veias!!!"; // desc
 		
 		
 	}

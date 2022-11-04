@@ -1,20 +1,11 @@
 package abstractitens;
 
 public abstract class Arma extends Item {
-	int dano;
-	int estamina;
-	int velocidade; //1 lenta, 2 normal, 3 rápida
-	String[] classes;
-
-	// Constructor
-	public Arma(String nome, double peso, String raridade, String[] afinidades,String efeito_Desc, String desc, int dano, int estamina,
-	int velocidade) { 
-		super(nome, peso, raridade, afinidades, efeito_Desc, desc);
+	protected int dano;
+	protected int estamina;
+	protected int velocidade; //1 lenta, 2 normal, 3 rápida
+//	protected String[] classes;
 	
-		this.dano = dano; 
-		this.estamina = estamina; 
-		this.velocidade = velocidade;
-	}
 	// Getters e Setters
 	public int getDano() {
 		return dano;
@@ -40,13 +31,13 @@ public abstract class Arma extends Item {
 		this.velocidade = velocidade;
 	}
 
-	public String[] getClasses() {
-		return classes;
-	}
+//	public String[] getClasses() {
+//		return classes;
+//	}
 
-	public void setClasses(String[] classes) {
-		this.classes = classes;
-	}
+//	public void setClasses(String[] classes) {
+//		this.classes = classes;
+//	}
 	
 }
 
