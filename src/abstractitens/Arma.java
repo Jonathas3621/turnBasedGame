@@ -1,10 +1,11 @@
 package abstractitens;
 
 public abstract class Arma extends Item {
+
 	int dano;
 	int estamina;
 	int velocidade; //1 lenta, 2 normal, 3 rápida
-	protected String[] classes;
+	//protected String[] classes;
 	
 	// Constructor
 	public Arma() {}
@@ -34,13 +35,13 @@ public abstract class Arma extends Item {
 		this.velocidade = velocidade;
 	}
 
-	public String[] getClasses() {
-		return classes;
-	}
+//	public String[] getClasses() {
+//		return classes;
+//	}
 
-	public void setClasses(String[] classes) {
-		this.classes = classes;
-	}
+//	public void setClasses(String[] classes) {
+//		this.classes = classes;
+//	}
 	
 }
 
