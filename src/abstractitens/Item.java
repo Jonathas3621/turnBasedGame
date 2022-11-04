@@ -1,7 +1,7 @@
 package abstractitens;
 
 public abstract class Item {
-	protected String nome;
+	String nome;
 	double peso;
 	String raridade;	//Inicialmente tipo String. Pode mudar
 	String[] afinidades; //Elementos com os quais o item tem afinidade
@@ -9,15 +9,7 @@ public abstract class Item {
 	String desc;
 
 	// Constructor
-	public Item(String nome, double peso, String raridade, String[] afinidades,
-	  String efeito_Desc, String desc) {  
-		this.nome = nome; 
-		this.peso = peso; 
-		this.raridade = raridade; 
-		this.afinidades = afinidades;
-		this.efeito_Desc = efeito_Desc; 
-		this.desc = desc; 
-	}
+	public Item() {}
 	 
 	// Abstract methods
 	public abstract void activate();
@@ -70,6 +62,4 @@ public abstract class Item {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	
-	
 }
