@@ -1,0 +1,1 @@
+{"forca":0,"vida":20,"nome":"Abelha","destreza":0}
