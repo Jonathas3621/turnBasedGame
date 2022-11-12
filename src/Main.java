@@ -1,12 +1,17 @@
-import chars.Char;
+import chars.Charac;
 import itens.Katana;
 import java.util.Scanner;
+import gamehandlers.SaLoHandler;
 
 // Exemplo de função Main, apenas experimentando
 public class Main {
     public static void main(String[] args) {
-        Char p1 = new Char("Abelha", 20, 4, new Katana());
-        Char p2 = new Char("Mosquito", 19, 6, new Katana());
+    	Charac p1 = new Charac("Abelha", 20, 4, new Katana());
+        SaLoHandler.saveToFile(p1, "teste.txt");
+    }
+    public static void battle() {
+    	Charac p1 = new Charac("Abelha", 20, 4, new Katana());
+        Charac p2 = new Charac("Mosquito", 19, 6, new Katana());
         
         Scanner s = new Scanner(System.in);    
 	    
