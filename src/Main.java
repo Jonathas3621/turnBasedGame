@@ -17,9 +17,9 @@ public class Main {
             int com = s.nextInt();	// Le o ataque
             
             if (com == 1) {	//Quando digitar 1, Abelha manda um ataque fraco, power 8
-            	p1.attack(p2, 8, p1.getHolding());
+            	p1.attack(p2, p1.getForca(), p1.getHolding());
             } else if (com == 2) {	//Quando digitar 2, Abelha manda um ataque forte, power 14
-            	p1.attack(p2, 14, p2.getHolding());	 
+            	p1.attack(p2, p1.getForca(), p1.getHolding());	 
             }
             
             p2.attack(p1, 10, p2.getHolding());
