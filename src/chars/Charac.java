@@ -1,10 +1,11 @@
 package chars;
 
 import abstractitens.Arma;
+import estamina.*;
 import org.json.JSONObject;
+import moves.*;
 
 public class Charac {
-	JSONObject atributes;
     String nome;
     int vida;
     int forca;
@@ -13,88 +14,104 @@ public class Charac {
     int inteligencia;
     int sabedoria;
     int agilidade;
+    EstaminaBar estamina;
+    Move[] movimentos;
     Arma holding;
     
-    public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, Arma holding) {
-        this.atributes.put("nome", nome);
-        this.atributes.put("vida", vida);
-        this.atributes.put("forca", forca);
-        this.atributes.put("destreza", destreza);
-        this.atributes.put("constituicao", constituicao);
-        this.atributes.put("inteligencia", inteligencia);
-        this.atributes.put("sabedoria", sabedoria);
-        this.atributes.put("agilidade", agilidade);
-        this.atributes.put("holding", holding);
+    public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
+        this.nome = nome;
+        this.vida = vida;
+        this.forca = forca;
+        this.destreza = destreza;
+        this.constituicao = constituicao;
+        this.inteligencia = inteligencia;
+        this.sabedoria = sabedoria;
+        this.agilidade = agilidade;
+        this.estamina = estamina;
     }
     
-    public Charac(JSONObject atributes_data) {
-    	this.atributes = atributes_data
-    }
-   
-    public void attack(Charac target, int power, Arma item) {
-        target.receive_damage(power + item.getDano());    
+    /*public Charac(JSONObject atributes) {
+    	this.nome = atributes.getString("nome");
+        this.vida = atributes.getInt("vida");
+        this.forca = atributes.getInt("forca");
+        this.destreza = atributes.getInt("destreza");
+        this.constituicao = atributes.getInt("constituicao");
+        this.inteligencia = atributes.getInt("inteligencia");
+        this.sabedoria = atributes.getInt("sabedoria");
+        this.agilidade = atributes.getInt("agilidade");
+    }*/
+    
+    public void attack(Charac target, Arma item) {	// Dois metodos attack, um para armas outro para movimentos... algo deve mudar aí
+    	int power = this.getForca();			// Talvez criar movimentos que ataquem com armas, ou criar uma interface "ativavel".
+        target.receiveDamage(power + item.getDano());   
+        System.out.println(this.getNome() + " ataca " + target.getNome()); 
     }
     
-    public void receive_damage(int damage) {
+    public void attack(Charac target, Move move) {
+    	move.activate(this, target);
+    }
+    
+    public void receiveDamage(int damage) {
         this.vida -= damage - this.constituicao;
         if (this.vida < 0) this.vida = 0;
     }
     
     public void print() {
-        System.out.println(this.nome + " " + this.vida + " " + this.constituicao + " " + this.holding.getNome());
+        System.out.println(this.nome + " " + this.vida + " " + this.holding.getNome());
     }
     
     // Getters e Setters
+    
 	public String getNome() {
-		return this.atributes.get("nome");
+		return nome;
 	}
 
 	public void setNome(String nome) {
-		this.atributes.put("nome", nome);
+		this.nome = nome;
 	}
 
 	public int getVida() {
-		return this.atributes.get("vida");
+		return vida;
 	}
 
 	public void setVida(int vida) {
-		this.atributes.put("vida", vida);
+		this.vida = vida;
 	}
 
 	public int getForca() {
-		return this.atributes.get("forca");
+		return forca;
 	}
 
 	public void setForca(int forca) {
-		this.atributes.put("forca", forca);
+		this.forca = forca;
 	}
 
 	public int getDestreza() {
-		return this.atributes.get("destreza");
+		return destreza;
 	}
 
 	public void setDestreza(int destreza) {
-		this.atributes.put("destreza", destreza);
+		this.destreza = destreza;
 	}
 
 	public int getConstituicao() {
-		return this.atributes.get("constituicao");
+		return constituicao;
 	}
 
 	public void setConstituicao(int constituicao) {
-		this.atributes.put("constituicao", constituicao);;
+		this.constituicao = constituicao;
 	}
 
 	public int getInteligencia() {
-		return this.atributes.get("inteligencia");
+		return inteligencia;
 	}
 
 	public void setInteligencia(int inteligencia) {
-		this.atributes.put("inteligencia", inteligencia);
+		this.inteligencia = inteligencia;
 	}
 
 	public int getSabedoria() {
-		return this.atributes.get("sabedoria");
+		return sabedoria;
 	}
 
 	public void setSabedoria(int sabedoria) {
@@ -102,18 +119,42 @@ public class Charac {
 	}
 
 	public int getAgilidade() {
-		return this.atributes.get("agilidade");
+		return agilidade;
 	}
 
 	public void setAgilidade(int agilidade) {
-		this.atributes.put("sabedoria", sabedoria);
+		this.agilidade = agilidade;
+	}
+
+	public int getPE() {
+		return this.estamina.getPE();
+	}
+
+	public void setPE(int pe) {
+		this.estamina.setPE(pe);
+	}
+	
+	public int getMaxPE() {
+		return this.estamina.getMax();
+	}
+	
+	public void setMaxPE(int max) {
+		this.estamina.setMax(max);
 	}
 
 	public Arma getHolding() {
-		return this.atributes.get("holding");
+		return this.holding;
+	}
+	
+	public void setMovimentos(Move[] movimentos) {
+		this.movimentos = movimentos;
+	}
+	
+	public Move[] getMovimentos() {
+		return this.movimentos;
 	}
 
 	public void setHolding(Arma holding) {
-		this.atributes.put("holding", holding);
+		this.holding = holding;
 	}
 }

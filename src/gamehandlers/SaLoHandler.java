@@ -1,7 +1,6 @@
 package gamehandlers;
 
-import org.json.JSONObject;
-import org.json.JSONWriter;
+import org.json.*;
 import java.io.*;
 import chars.Charac;
 
