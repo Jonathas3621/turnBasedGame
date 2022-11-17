@@ -1,6 +1,6 @@
 package chars;
 
-import abstractitens.Arma;
+import abstractitens.*;
 import estamina.*;
 import org.json.JSONObject;
 import moves.*;
@@ -18,6 +18,7 @@ public class Charac {
     EstaminaBar estamina;
     Move[] movimentos;
     Arma holding;
+    Botas botas;
     
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
@@ -48,7 +49,8 @@ public class Charac {
     }
     
     public void receiveDamage(int damage) {
-        this.vida -= damage - this.constituicao;
+    	int absorved_damage = this.botas.protectDamage(damage);
+        this.vida -= absorved_damage - this.constituicao;
         if (this.vida < 0) this.vida = 0;
     }
     
@@ -152,5 +154,13 @@ public class Charac {
 
 	public void setHolding(Arma holding) {
 		this.holding = holding;
+	}
+	
+	public Botas getBotas() {
+		return this.botas;
+	}
+	
+	public void setBotas(Botas novas_botas) {
+		this.botas = novas_botas;
 	}
 }
