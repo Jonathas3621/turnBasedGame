@@ -6,14 +6,14 @@ public abstract class Item {
 	double peso;
 	String raridade;	//Inicialmente tipo String. Pode mudar
 	String[] afinidades; //Elementos com os quais o item tem afinidade
-	String efeito_Desc;
+	String efeito_Desc = "";
 	String desc;
 
 	// Constructor
 	public Item() {}
 	 
 	// Abstract methods
-	public abstract void activate();
+	//public abstract void activate(); //Nem todo item necessita ter efeito ativo
 
 	// Getters e Setters
 	public String getNome() {
