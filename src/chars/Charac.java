@@ -4,6 +4,7 @@ import abstractitens.Arma;
 import estamina.*;
 import org.json.JSONObject;
 import moves.*;
+import usable.Usable;
 
 public class Charac {
     String nome;
@@ -41,14 +42,9 @@ public class Charac {
         this.agilidade = atributes.getInt("agilidade");
     }*/
     
-    public void attack(Charac target, Arma item) {	// Dois metodos attack, um para armas outro para movimentos... algo deve mudar aí
-    	int power = this.getForca();			// Talvez criar movimentos que ataquem com armas, ou criar uma interface "ativavel".
-        target.receiveDamage(power + item.getDano());   
-        System.out.println(this.getNome() + " ataca " + target.getNome()); 
-    }
-    
-    public void attack(Charac target, Move move) {
-    	move.activate(this, target);
+    public void attack(Charac target, Usable usable) {
+        usable.use(this, target);   			// Criado uma interface Usable.
+        System.out.println(this.getNome() + " ataca " + target.getNome());
     }
     
     public void receiveDamage(int damage) {

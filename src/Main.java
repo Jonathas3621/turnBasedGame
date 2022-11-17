@@ -13,10 +13,14 @@ public class Main {
     	Charac p2 = new Charac("Mosquito", 20, 2, 4, 0, 2, 0, 6, new ManaBar(30));
     	
     	p1.setHolding(new Katana());
+    	p2.setHolding(new Katana());
     	
+    	p2.print();
     	p1.setMovimentos(kit_magico);
-    	p1.attack(p2, p1.getHolding());
+    	p1.attack(p2, p1.getMovimentos()[0]);
+    	p2.print();
     }
+    
     public static void battle() {
     	Charac p1 = new Charac("Abelha", 20, 2, 7, 0, 0, 0, 1, new ManaBar(20));
         Charac p2 = new Charac("Mosquito", 20, 2, 4, 0, 0, 0, 6, new ManaBar(30));
@@ -38,7 +42,7 @@ public class Main {
             System.out.println("Prioridade de " + p1.getNome() + " " + getPriority(p1));
             System.out.println("Prioridade de " + p2.getNome() + " " + getPriority(p2));
             
-            if (getPriority(p1) > getPriority(p2)) {	//Decide a ordem de ataque (tomara que nunca seja igual kk)
+            if (getIniciativa(p1) > getIniciativa(p2)) {	//Decide a ordem de ataque (tomara que nunca seja igual kk)
             	ordem[0] = p1;
             	ordem[1] = p2;
             } else {
@@ -53,7 +57,7 @@ public class Main {
         s.close();
     }
     
-    public static int getPriority(Charac player) {	//grandeza do jogo chamada Priority usada pra ver quem vai primeiro
+    public static int getIniciativa(Charac player) {	//grandeza do jogo chamada Iniciativa usada pra ver quem vai primeiro
     	return player.getAgilidade() * player.getHolding().getVelocidade();
     }
 }
