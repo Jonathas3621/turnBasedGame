@@ -5,6 +5,8 @@ import estamina.*;
 import org.json.JSONObject;
 import moves.*;
 import usable.Usable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Charac {
     String nome;
@@ -19,7 +21,10 @@ public class Charac {
     Move[] movimentos;
     Arma holding;
     Botas botas;
-    
+    Peitoral peitoral;
+    Elmo elmo;
+    List inventario = new ArrayList();
+        
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
         this.vida = vida;
@@ -152,15 +157,35 @@ public class Charac {
 		return this.movimentos;
 	}
 
-	public void setHolding(Arma holding) {
+	public void equip(Arma holding) {
+        if (this.holding != null) this.inventario.add(this.holding);
 		this.holding = holding;
 	}
 	
 	public Botas getBotas() {
 		return this.botas;
 	}
-	
-	public void setBotas(Botas novas_botas) {
-		this.botas = novas_botas;
-	}
+
+    public Peitoral getPeitoral() {
+        return this.peitoral;
+    }
+
+    public Elmo getElmo() {
+        return this.elmo;
+    }
+
+    public void equip(Botas new_botas) {
+        if (botas != null) inventario.add(this.botas);
+        this.botas = new_botas;
+    }
+
+    public void equip(Peitoral new_peitoral) {
+        if (peitoral != null) inventario.add(this.peitoral);
+        this.peitoral = new_peitoral;
+    }
+
+    public void equip(Elmo new_elmo) {
+        if (this.elmo != null) inventario.add(this.elmo);
+        this.elmo = new_elmo;
+    }
 }

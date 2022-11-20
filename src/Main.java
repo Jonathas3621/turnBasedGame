@@ -12,8 +12,8 @@ public class Main {
     	Charac p1 = new Charac("Abelha", 20, 2, 7, 0, 1, 0, 1, new ManaBar(20));
     	Charac p2 = new Charac("Mosquito", 20, 2, 4, 0, 2, 0, 6, new ManaBar(30));
     	
-    	p1.setHolding(new Katana());
-    	p2.setHolding(new Katana());
+    	p1.equip(new Katana());
+    	p2.equip(new Katana());
     	
     	p2.print();
     	p1.setMovimentos(kit_magico);
@@ -24,8 +24,8 @@ public class Main {
     public static void battle() {
     	Charac p1 = new Charac("Abelha", 20, 2, 7, 0, 0, 0, 1, new ManaBar(20));
         Charac p2 = new Charac("Mosquito", 20, 2, 4, 0, 0, 0, 6, new ManaBar(30));
-        p1.setHolding(new Katana());
-        p2.setHolding(new Katana());
+        p1.equip(new Katana());
+        p2.equip(new Katana());
         
         System.out.println(p1.getNome() + " tem mana = " + p1.getPE());
         System.out.println(p2.getNome() + " tem mana maxima = " + p2.getMaxPE());
@@ -39,8 +39,8 @@ public class Main {
             
             int command = s.nextInt();	// Le o ataque (não serve pra nada kk)
             
-            System.out.println("Prioridade de " + p1.getNome() + " " + getPriority(p1));
-            System.out.println("Prioridade de " + p2.getNome() + " " + getPriority(p2));
+            System.out.println("Prioridade de " + p1.getNome() + " " + getIniciativa(p1));
+            System.out.println("Prioridade de " + p2.getNome() + " " + getIniciativa(p2));
             
             if (getIniciativa(p1) > getIniciativa(p2)) {	//Decide a ordem de ataque (tomara que nunca seja igual kk)
             	ordem[0] = p1;
