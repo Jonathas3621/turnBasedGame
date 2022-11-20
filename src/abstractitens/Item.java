@@ -1,13 +1,12 @@
 package abstractitens;
 
 public abstract class Item {
-
-	String nome;
-	double peso;
-	String raridade;	//Inicialmente tipo String. Pode mudar
-	String[] afinidades; //Elementos com os quais o item tem afinidade
-	String efeito_Desc = "";
-	String desc;
+	private String nome;
+	private double peso;
+	private String raridade;	//Inicialmente tipo String. Pode mudar
+	private String[] afinidades; //Elementos com os quais o item tem afinidade
+	private String efeito_Desc = "";
+	private String desc;
 
 	// Constructor
 	public Item() {}

@@ -1,8 +1,8 @@
 package estamina;
 
 public abstract class EstaminaBar {
-	int max;
-	int pontosEstamina;
+	private int max;
+	private int pontosEstamina;
 	
 	public EstaminaBar(int max) {
 		this.max = max;

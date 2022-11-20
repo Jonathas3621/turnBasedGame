@@ -3,9 +3,9 @@ package abstractitens;
 import usable.Usable;
 
 public abstract class Arma extends Item implements Usable {
-	int dano;
-	int estamina;
-	int velocidade; //1 lenta, 2 normal, 3 rápida
+	private int dano;
+	private int estamina;
+	private int velocidade; //1 lenta, 2 normal, 3 rápida
 	//protected String[] classes;
 	
 	// Constructor

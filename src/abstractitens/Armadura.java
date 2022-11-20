@@ -1,7 +1,7 @@
 package abstractitens;
 
 public abstract class Armadura extends Item {
-	int protecao;
+	private int protecao;
 	
 	public Armadura() {}
 	

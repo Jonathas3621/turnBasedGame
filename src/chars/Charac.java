@@ -5,26 +5,26 @@ import estamina.*;
 import org.json.JSONObject;
 import moves.*;
 import usable.Usable;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Charac {
-    String nome;
-    int vida;
-    int forca;
-    int destreza;
-    int constituicao;
-    int inteligencia;
-    int sabedoria;
-    int agilidade;
-    EstaminaBar estamina;
-    Move[] movimentos;
-    Arma holding;
-    Botas botas;
-    Peitoral peitoral;
-    Elmo elmo;
-    List inventario = new ArrayList();
-        
+    private String nome;
+    private int vida;
+    private int forca;
+    private int destreza;
+    private int constituicao;
+    private int inteligencia;
+    private int sabedoria;
+    private int agilidade;
+    private EstaminaBar estamina;
+    private Move[] movimentos;
+    private Arma holding;
+    private Botas botas;
+    private Peitoral peitoral;
+    private Elmo elmo;
+    private List<Item> inventario = new LinkedList<Item>();
+
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
         this.vida = vida;
@@ -187,5 +187,11 @@ public class Charac {
     public void equip(Elmo new_elmo) {
         if (this.elmo != null) inventario.add(this.elmo);
         this.elmo = new_elmo;
+    }
+
+    public int getIniciativa() {
+        int multiplicador = 2;
+        if (this.getholding() != null) multiplicador = this.getHolding().getVelocidade();
+        return this.getAgilidade() * multiplicador;
     }
 }

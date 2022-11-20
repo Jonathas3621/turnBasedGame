@@ -42,7 +42,7 @@ public class Main {
             System.out.println("Prioridade de " + p1.getNome() + " " + getIniciativa(p1));
             System.out.println("Prioridade de " + p2.getNome() + " " + getIniciativa(p2));
             
-            if (getIniciativa(p1) > getIniciativa(p2)) {	//Decide a ordem de ataque (tomara que nunca seja igual kk)
+            if (p1.getIniciativa() > p2.getIniciativa()) {	//Decide a ordem de ataque (tomara que nunca seja igual kk)
             	ordem[0] = p1;
             	ordem[1] = p2;
             } else {
@@ -55,9 +55,5 @@ public class Main {
         }
         System.out.println("Uma batalha sangrenta");
         s.close();
-    }
-    
-    public static int getIniciativa(Charac player) {	//grandeza do jogo chamada Iniciativa usada pra ver quem vai primeiro
-    	return player.getAgilidade() * player.getHolding().getVelocidade();
     }
 }

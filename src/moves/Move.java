@@ -4,8 +4,8 @@ import chars.Charac;
 import usable.Usable;
 
 public abstract class Move implements Usable {
-	String nome;
-	int custo;
+	private String nome;
+	private int custo;
 	
 	public Move(String nome) {
 		this.nome = nome;
