@@ -49,7 +49,7 @@ public class Charac {
     }*/
     
     public void attack(Charac target, Usable usable) {
-        usable.use(this, target);   			// Criado uma interface Usable.
+        if (usable != null) usable.use(this, target);   			
         System.out.println(this.getNome() + " ataca " + target.getNome());
     }
     
@@ -63,7 +63,7 @@ public class Charac {
     }
     
     public void print() {
-        System.out.println(this.nome + " " + this.vida + " " + this.holding.getNome());
+        System.out.println(" *" + this.nome + " " + this.vida + "hp, equipa " + this.holding.getNome());
     }
     
     // Getters e Setters
@@ -83,6 +83,11 @@ public class Charac {
 	public void setVida(int vida) {
 		this.vida = vida;
 	}
+
+    public boolean isAlive() {
+        if (this.vida > 0) return true;
+        else return false;
+    }
 
 	public int getForca() {
 		return forca;
