@@ -54,8 +54,11 @@ public class Charac {
     }
     
     public void receiveDamage(int damage) {
-    	int absorved_damage = this.botas.protectDamage(damage);
-        this.vida -= absorved_damage - this.constituicao;
+    	if (this.botas != null) damage = this.botas.protectDamage(damage);
+    	if (this.peitoral != null) damage = this.peitoral.protectDamage(damage);
+    	if (this.elmo != null) damage = this.elmo.protectDamage(damage);
+    	
+        this.vida -= damage - this.constituicao;
         if (this.vida < 0) this.vida = 0;
     }
     
@@ -191,7 +194,7 @@ public class Charac {
 
     public int getIniciativa() {
         int multiplicador = 2;
-        if (this.getholding() != null) multiplicador = this.getHolding().getVelocidade();
+        if (this.getHolding() != null) multiplicador = this.getHolding().getVelocidade();
         return this.getAgilidade() * multiplicador;
     }
 }
