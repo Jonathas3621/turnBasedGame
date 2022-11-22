@@ -11,22 +11,14 @@ import abstractitens.Item;
 // Exemplo de função Main, apenas experimentando
 public class Main {
     public static void main(String[] args) {
-        //Main.battle();
-        /*
-    	Move[] kit_magico = {new IceFreeze(), new Fireball()};
-    	Charac p1 = new Charac("Abelha", 20, 2, 7, 0, 1, 0, 1, new ManaBar(20));
-    	Charac p2 = new Charac("Mosquito", 20, 2, 4, 0, 2, 0, 6, new ManaBar(30));
+    	Charac guy = new Charac("Guy", 20, 2, 7, 0, 0, 0, 1, new ManaBar(20));
+    	Move[] move_list = {new Fireball(), new IceFreeze()};
+    	guy.setMovimentos(move_list);
+    	guy.equip(new Katana());
     	
-    	p1.equip(new Katana());
-    	p2.equip(new Katana());
-    	
-    	p2.print();
-    	p1.setMovimentos(kit_magico);
-    	p1.attack(p2, p1.getMovimentos()[0]);
-    	p2.print();
-        */
-    	
-    	try {
+    	SaLoHandler.saveToFile(guy, "guy.txt");
+    	/*
+    	try {	// Código para gerar um objeto de uma classe X a partir do nome da classe
     		Scanner scanner = new Scanner(System.in);
     		String name = scanner.next();
     		
@@ -43,7 +35,7 @@ public class Main {
     		scanner.close();
     	}catch(Exception e) {
     		System.out.println("Exception: " + e);
-    	}
+    	}*/
     }
     
     public static void battle() {

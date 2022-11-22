@@ -152,6 +152,10 @@ public class Charac {
 	public void setMaxPE(int max) {
 		this.estamina.setMax(max);
 	}
+	
+	public EstaminaBar getEstaminaBar() {
+		return this.estamina;
+	}
 
 	public Arma getHolding() {
 		return this.holding;
