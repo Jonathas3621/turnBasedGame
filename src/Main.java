@@ -1,14 +1,17 @@
 import java.util.*;
+import java.lang.reflect.*;
 import chars.Charac;
 import itens.*;
 import gamehandlers.SaLoHandler;
 import estamina.*;
 import moves.*;
+import usable.Usable;
+import abstractitens.Item;
 
 // Exemplo de função Main, apenas experimentando
 public class Main {
     public static void main(String[] args) {
-        Main.battle();
+        //Main.battle();
         /*
     	Move[] kit_magico = {new IceFreeze(), new Fireball()};
     	Charac p1 = new Charac("Abelha", 20, 2, 7, 0, 1, 0, 1, new ManaBar(20));
@@ -22,6 +25,25 @@ public class Main {
     	p1.attack(p2, p1.getMovimentos()[0]);
     	p2.print();
         */
+    	
+    	try {
+    		Scanner scanner = new Scanner(System.in);
+    		String name = scanner.next();
+    		
+    		Class[] parameters = {};
+    		
+    		@SuppressWarnings("rawtypes")
+			Class classe = Class.forName(name);
+    		
+    		@SuppressWarnings("unchecked")
+			Item item = (Item) classe.getDeclaredConstructor(parameters).newInstance();
+    		
+    		System.out.println("Peso: " + item.getPeso());
+    		
+    		scanner.close();
+    	}catch(Exception e) {
+    		System.out.println("Exception: " + e);
+    	}
     }
     
     public static void battle() {
