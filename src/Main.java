@@ -24,8 +24,7 @@ public class Main {
     	p1.setMovimentos(kit_magico);
     	p1.attack(p2, p1.getMovimentos()[0]);
     	p2.print();
-        */
-    	
+    	*/
     	try {
     		Scanner scanner = new Scanner(System.in);
     		String name = scanner.next();
@@ -44,6 +43,7 @@ public class Main {
     	}catch(Exception e) {
     		System.out.println("Exception: " + e);
     	}
+        
     }
     
     public static void battle() {
