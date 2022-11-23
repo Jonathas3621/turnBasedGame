@@ -15,10 +15,11 @@ public class Main {
     	Move[] move_list = {new Fireball(), new IceFreeze()};
     	guy.setMovimentos(move_list);
     	guy.equip(new Katana());
-    	
     	SaLoHandler.saveToFile(guy, "guy.txt");
-    	/*
-    	try {	// Código para gerar um objeto de uma classe X a partir do nome da classe
+    }
+
+    public static void function_temp() {
+        try {
     		Scanner scanner = new Scanner(System.in);
     		String name = scanner.next();
     		
@@ -33,9 +34,9 @@ public class Main {
     		System.out.println("Peso: " + item.getPeso());
     		
     		scanner.close();
-    	}catch(Exception e) {
+    	} catch (Exception e) {
     		System.out.println("Exception: " + e);
-    	}*/
+    	}
     }
     
     public static void battle() {

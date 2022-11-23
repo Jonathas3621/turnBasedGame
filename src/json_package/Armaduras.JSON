@@ -1,0 +1,17 @@
+{
+    "Elmos":{},
+
+    "Peitorais":{},
+
+    "Botas":{
+        "BotasDeCouro":{
+            "nome": "BotasDeCouro",
+            "Peso": 0.5,
+            "Raridade": "comum",
+            "Desc": "As mais baratas do mercado",
+            "Afinidades": [],
+            "Efeitos": [],
+            "Protecao": 2
+        }
+    }
+}
