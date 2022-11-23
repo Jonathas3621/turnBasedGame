@@ -16,10 +16,10 @@ public class Main {
     	Move[] move_list = {new Fireball(), new IceFreeze()};
     	guy.setMovimentos(move_list);
     	guy.equip(new Katana());
-        String fileName = "guy.txt";
-        JSONObject json_data = SaLoHandler.readFromFile("savedcharacters/"+fileName);
-        System.out.println(json_data.get("nome"));
-        System.out.println(json_data.get("holding"));
+        String fileName = "guy.json";
+        SaLoHandler.saveToFile(guy, fileName);
+        //System.out.println(json_data.get("nome"));
+        //System.out.println(json_data.get("dano"));
     }
     
     public static void battle() {

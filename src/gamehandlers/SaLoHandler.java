@@ -12,13 +12,15 @@ import org.json.JSONObject;
 
 import chars.Charac;
 import moves.Move;
+import abstractitens.*;
 import java.util.List;
 import java.util.ArrayList;
 
 public class SaLoHandler {
 
-	public static File dir = new File("src"); //diretório pai
-	
+	public static File dir = new File("src");   //diretório pai
+	public static String dir_s = "savedjson/";    //outro dir pai
+
 	public static void saveToFile(Charac charac, String fileName) {
 		try {
 			JSONObject char_save = new JSONObject(); //Só alguns atributos por enquanto
@@ -39,17 +41,31 @@ public class SaLoHandler {
 			if (charac.getPeitoral() != null) char_save.put("peitoral", charac.getPeitoral().getClass().getName());
 			if (charac.getElmo() != null) char_save.put("elmo", charac.getElmo().getClass().getName());
 			// Falta inventário
-			FileWriter out = new FileWriter("savedcharacters/"+fileName);
-			out.write(char_save.toString());
-			out.write("\n");
-			out.close();
-		} catch (IOException e) {
+			writeJsonIntoFile(char_save, fileName);
+		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
+
+    public static void saveToFile(Arma arma, String fileName) {
+        try {
+            JSONObject arma_save = new JSONObject();
+            arma_save.put("nome", arma.getNome());
+            arma_save.put("peso", arma.getPeso());
+            arma_save.put("raridade", arma.getRaridade());
+            arma_save.put("afinidades", arma.getAfinidades());
+            arma_save.put("efeito_desc", arma.getEfeito_Desc());
+            arma_save.put("desc", arma.getDesc());
+            arma_save.put("dano", arma.getDano());
+            arma_save.put("estamina", arma.getEstamina());
+            arma_save.put("velocidade", arma.getVelocidade());
+            writeJsonIntoFile(arma_save, fileName);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 	
 	public static JSONObject readFromFile(String pathName) {
-		
 		JSONObject json = null;
 		
         try {
@@ -100,9 +116,22 @@ public class SaLoHandler {
     		@SuppressWarnings("rawtypes")
 			Class classe = Class.forName(class_name);
     		@SuppressWarnings("unchecked")
-			return classe.getDeclaredConstructor(parameters).newInstance();
+			Object objeto = classe.getDeclaredConstructor(parameters).newInstance();
+            return objeto;
     	} catch (Exception e) {
     		System.out.println("Exception: " + e);
     	}
+        return null;
+    }
+
+    private static void writeJsonIntoFile(JSONObject data, String fileName) {
+        try {
+            FileWriter out = new FileWriter(SaLoHandler.dir_s + fileName);
+            out.write(data.toString());
+            out.write("\n");
+            out.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
