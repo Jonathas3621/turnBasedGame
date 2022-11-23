@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class SaLoHandler {
 
-	private static File dir = new File("src"); //diretório pai
+	public static File dir = new File("src"); //diretório pai
 	
 	public static void saveToFile(Charac charac, String fileName) {
 		try {
@@ -55,7 +55,7 @@ public class SaLoHandler {
         try {
         	
         	//Lê o JSON e passa os dados para um buffer de leitura
-            FileReader fileReader = new FileReader(new File(dir, pathName));
+            FileReader fileReader = new FileReader(new File(pathName));
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             
             //Passa o os dados do buffer para uma string
@@ -93,4 +93,16 @@ public class SaLoHandler {
 		//Só é chamado caso haja algum problema com a lista passada para o parâmetro keys
 		return -1;
 	}
+
+    public static Object toClass(String class_name) {
+        try {
+    		Class[] parameters = {};
+    		@SuppressWarnings("rawtypes")
+			Class classe = Class.forName(class_name);
+    		@SuppressWarnings("unchecked")
+			return classe.getDeclaredConstructor(parameters).newInstance();
+    	} catch (Exception e) {
+    		System.out.println("Exception: " + e);
+    	}
+    }
 }

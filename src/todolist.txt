@@ -1,0 +1,3 @@
+[ ] Interligar movimentos com custo de mana
+[ ] Organizar a batalha em fases, 1 função para cada fase
+[ ] Criar a classe Afinidade

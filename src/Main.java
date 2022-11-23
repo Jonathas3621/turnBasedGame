@@ -7,6 +7,7 @@ import estamina.*;
 import moves.*;
 import usable.Usable;
 import abstractitens.Item;
+import org.json.*;
 
 // Exemplo de função Main, apenas experimentando
 public class Main {
@@ -15,28 +16,10 @@ public class Main {
     	Move[] move_list = {new Fireball(), new IceFreeze()};
     	guy.setMovimentos(move_list);
     	guy.equip(new Katana());
-    	SaLoHandler.saveToFile(guy, "guy.txt");
-    }
-
-    public static void function_temp() {
-        try {
-    		Scanner scanner = new Scanner(System.in);
-    		String name = scanner.next();
-    		
-    		Class[] parameters = {};
-    		
-    		@SuppressWarnings("rawtypes")
-			Class classe = Class.forName(name);
-    		
-    		@SuppressWarnings("unchecked")
-			Item item = (Item) classe.getDeclaredConstructor(parameters).newInstance();
-    		
-    		System.out.println("Peso: " + item.getPeso());
-    		
-    		scanner.close();
-    	} catch (Exception e) {
-    		System.out.println("Exception: " + e);
-    	}
+        String fileName = "guy.txt";
+        JSONObject json_data = SaLoHandler.readFromFile("savedcharacters/"+fileName);
+        System.out.println(json_data.get("nome"));
+        System.out.println(json_data.get("holding"));
     }
     
     public static void battle() {

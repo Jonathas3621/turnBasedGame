@@ -1,0 +1,1 @@
+{"holding":"itens.Katana","inteligencia":0,"estamina":"estamina.ManaBar","forca":2,"vida":20,"agilidade":1,"nome":"Guy","movimentos":["moves.Fireball","moves.IceFreeze"],"destreza":7,"constituicao":0,"sabedoria":0}
