@@ -1,15 +1,36 @@
 package abstractitens;
 
+import java.util.ArrayList;
+import org.json.*;
+import gamehandlers.SaLoHandler;
+
 public abstract class Item {
 	private String nome;
 	private double peso;
-	private String raridade;	//Inicialmente tipo String. Pode mudar
-	private String[] afinidades; //Elementos com os quais o item tem afinidade
+	private String raridade = "comum";	//Inicialmente tipo String. Pode mudar
+	private ArrayList<String> afinidades = new ArrayList<String>(); //Elementos com os quais o item tem afinidade
 	private String efeito_Desc = "";
-	private String desc;
+	private String desc = "";
 
 	// Constructor
-	public Item() {}
+	public Item(String nome, double peso, String raridade, ArrayList<String> afinidades, String efeito_Desc, String desc) {
+        this.nome = nome;
+        this.peso = peso;
+        this.raridade = raridade;
+        this.afinidades = afinidades;
+        this.efeito_Desc = efeito_Desc;
+        this.desc = desc;
+    }
+
+    public Item(String item_fileName) {
+        JSONObject data_item = SaLoHandler.readFromFile(item_fileName);
+        this.nome = (String) data_item.get("nome");
+        this.peso = (double) data_item.get("peso");
+        this.raridade = (String) data_item.get("raridade");
+        this.afinidades = (ArrayList<String>) data_item.get("afinidades");
+        this.efeito_Desc = (String) data_item.get("efeito_Desc");
+        this.desc = (String) data_item.get("desc");
+    }
 	 
 	// Abstract methods
 	//public abstract void activate(); //Nem todo item necessita ter efeito ativo
@@ -39,11 +60,11 @@ public abstract class Item {
 		this.raridade = raridade;
 	}
 
-	public String[] getAfinidades() {
+	public ArrayList<String> getAfinidades() {
 		return afinidades;
 	}
 
-	public void setAfinidades(String[] afinidades) {
+	public void setAfinidades(ArrayList<String> afinidades) {
 		this.afinidades = afinidades;
 	}
 

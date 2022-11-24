@@ -1,18 +1,51 @@
 package abstractitens;
 
 import usable.Usable;
+import java.util.*;
+import chars.Charac;
+import org.json.*;
+import gamehandlers.SaLoHandler;
 
-public abstract class Arma extends Item implements Usable {
+public class Arma extends Item implements Usable{
 	private int dano;
 	private int estamina;
 	private int velocidade; //1 lenta, 2 normal, 3 rápida
-	//protected String[] classes;
+	private ArmaType categoria;  //ArmaType implements Usable
+    //protected String[] classes;
 	
 	// Constructor
-	public Arma() {}
+	public Arma(String nome, double peso, String raridade, ArrayList<String> afinidades, String efeito_Desc, String desc, int dano, int estamina, int velocidade, ArmaType categoria) {
+        super(nome, peso, raridade, afinidades, efeito_Desc, desc);
+        this.dano = dano;
+        this.estamina = estamina;
+        this.velocidade = velocidade;
+        this.categoria = categoria;
+        this.categoria.setReferedArma(this);
+    }
+
+    public Arma(String arma_fileName) {
+        super(arma_fileName);
+        JSONObject data_arma = SaLoHandler.readFromFile(arma_fileName);
+        this.dano = (int) data_arma.get("dano");
+        this.estamina = (int) data_arma.get("estamina");
+        this.velocidade = (int) data_arma.get("velocidade");
+    }
 	
+    // Use
+    public void use(Charac user, Charac target) {
+        this.categoria.use(user, target);
+    }
+
 	// Getters e Setters
-	public int getDano() {
+	public ArmaType getType() {
+        return this.categoria;
+    }
+
+    public void setType(ArmaType type) {
+        this.categoria = type;
+    }
+
+    public int getDano() {
 		return dano;
 	}
 

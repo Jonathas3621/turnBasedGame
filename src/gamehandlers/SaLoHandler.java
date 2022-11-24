@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 import org.json.JSONObject;
 
 import chars.Charac;
-import moves.Move;
-import abstractitens.*;
+import moves.Move; 
+import abstractitens.*; 
 import java.util.List;
 import java.util.ArrayList;
 
@@ -25,8 +25,8 @@ public class SaLoHandler {
 		try {
 			JSONObject char_save = new JSONObject(); //Só alguns atributos por enquanto
 			char_save.put("nome", charac.getNome());
-			char_save.put("vida", charac.getVida());
-			char_save.put("forca", charac.getForca());
+			char_save.put("vida", charac.getVida()); 
+            char_save.put("forca", charac.getForca());
 			char_save.put("destreza", charac.getDestreza());
 			char_save.put("constituicao", charac.getConstituicao());
 			char_save.put("inteligencia", charac.getInteligencia());
@@ -119,12 +119,12 @@ public class SaLoHandler {
 			Object objeto = classe.getDeclaredConstructor(parameters).newInstance();
             return objeto;
     	} catch (Exception e) {
-    		System.out.println("Exception: " + e);
+    	    System.out.println("Exception: " + e);
     	}
         return null;
     }
 
-    private static void writeJsonIntoFile(JSONObject data, String fileName) {
+    private static void writeJsonIntoFile(JSONObject data, String fileName) {   // Para reaproveitar código
         try {
             FileWriter out = new FileWriter(SaLoHandler.dir_s + fileName);
             out.write(data.toString());

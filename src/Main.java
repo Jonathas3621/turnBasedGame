@@ -6,20 +6,15 @@ import gamehandlers.SaLoHandler;
 import estamina.*;
 import moves.*;
 import usable.Usable;
-import abstractitens.Item;
+import abstractitens.*;
 import org.json.*;
 
 // Exemplo de função Main, apenas experimentando
 public class Main {
     public static void main(String[] args) {
-    	Charac guy = new Charac("Guy", 20, 2, 7, 0, 0, 0, 1, new ManaBar(20));
-    	Move[] move_list = {new Fireball(), new IceFreeze()};
-    	guy.setMovimentos(move_list);
-    	guy.equip(new Katana());
-        String fileName = "guy.json";
-        SaLoHandler.saveToFile(guy, fileName);
-        //System.out.println(json_data.get("nome"));
-        //System.out.println(json_data.get("dano"));
+        //Katana salo = (Katana) SaLoHandler.toClass("itens.Katana");
+        SaLoHandler.saveToFile(new Katana(), "Katana.json");
+
     }
     
     public static void battle() {
