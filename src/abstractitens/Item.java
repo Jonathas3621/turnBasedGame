@@ -1,6 +1,7 @@
 package abstractitens;
 
 import java.util.ArrayList;
+import java.math.BigDecimal;
 import org.json.*;
 import gamehandlers.SaLoHandler;
 
@@ -25,10 +26,14 @@ public abstract class Item {
     public Item(String item_fileName) {
         JSONObject data_item = SaLoHandler.readFromFile(item_fileName);
         this.nome = (String) data_item.get("nome");
-        this.peso = (double) data_item.get("peso");
+        this.peso = ((BigDecimal) data_item.get("peso")).doubleValue();
         this.raridade = (String) data_item.get("raridade");
-        this.afinidades = (ArrayList<String>) data_item.get("afinidades");
-        this.efeito_Desc = (String) data_item.get("efeito_Desc");
+        JSONArray arr = (JSONArray) data_item.get("afinidades");
+        for (int i = 0; i < arr.length(); i++) {
+           this.afinidades.add(arr.getJSONObject(i).toString());
+        }
+        //this.afinidades = (ArrayList<String>) data_item.get("afinidades");
+        this.efeito_Desc = (String) data_item.get("efeito_desc");
         this.desc = (String) data_item.get("desc");
     }
 	 

@@ -13,8 +13,9 @@ import org.json.*;
 public class Main {
     public static void main(String[] args) {
         //Katana salo = (Katana) SaLoHandler.toClass("itens.Katana");
-        SaLoHandler.saveToFile(new Katana(), "Katana.json");
-
+        //SaLoHandler.saveToFile(new Katana(), "Katana.json");
+        Arma katana = new Arma("savedjson/Katana.json");
+        System.out.println(katana.getNome());
     }
     
     public static void battle() {
