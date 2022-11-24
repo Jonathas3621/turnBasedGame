@@ -59,6 +59,7 @@ public class SaLoHandler {
             arma_save.put("dano", arma.getDano());
             arma_save.put("estamina", arma.getEstamina());
             arma_save.put("velocidade", arma.getVelocidade());
+            arma_save.put("tipo", arma.getType().getClass().getName());
             writeJsonIntoFile(arma_save, fileName);
         } catch (Exception e) {
             System.out.println(e);
