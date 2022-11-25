@@ -49,18 +49,17 @@ public class SaLoHandler {
 
     public static void saveToFile(Arma arma, String fileName) {
         try {
-            JSONObject arma_save = new JSONObject();
-            arma_save.put("nome", arma.getNome());
-            arma_save.put("peso", arma.getPeso());
-            arma_save.put("raridade", arma.getRaridade());
-            arma_save.put("afinidades", arma.getAfinidades());
-            arma_save.put("efeito_desc", arma.getEfeito_Desc());
-            arma_save.put("desc", arma.getDesc());
-            arma_save.put("dano", arma.getDano());
-            arma_save.put("estamina", arma.getEstamina());
-            arma_save.put("velocidade", arma.getVelocidade());
-            arma_save.put("tipo", arma.getType().getClass().getName());
+            JSONObject arma_save = armaToJsonObject(arma);
             writeJsonIntoFile(arma_save, fileName);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void saveToFile(Armadura armadura, String fileName) {
+        try {
+            JSONObject armadura_save = armaduraToJsonObject(armadura);
+            writeJsonIntoFile(armadura_save, fileName);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -123,6 +122,33 @@ public class SaLoHandler {
     	    System.out.println("Exception: " + e);
     	}
         return null;
+    }
+
+	private static JSONObject itemToJsonObject(Item item) {
+        JSONObject item_save = new JSONObject();
+        item_save.put("nome", item.getNome());
+        item_save.put("peso", item.getPeso());
+        item_save.put("raridade", item.getRaridade());
+        item_save.put("afinidades", item.getAfinidades());
+        item_save.put("efeito_desc", item.getEfeito_Desc());
+        item_save.put("desc", item.getDesc());
+        return item_save;
+    }
+
+    private static JSONObject armaToJsonObject(Arma arma) {
+        JSONObject arma_save = itemToJsonObject(arma);
+        arma_save.put("dano", arma.getDano());
+        arma_save.put("estamina", arma.getEstamina());
+        arma_save.put("velocidade", arma.getVelocidade());
+        //arma_save.put("tipo", arma.getType().getClass().getName());
+        return arma_save;
+
+    }
+
+    private static JSONObject armaduraToJsonObject(Armadura armadura) {
+        JSONObject armadura_save = itemToJsonObject(armadura);
+        armadura_save.put("protecao", armadura.getProtecao());
+        return armadura_save;
     }
 
     private static void writeJsonIntoFile(JSONObject data, String fileName) {   // Para reaproveitar código

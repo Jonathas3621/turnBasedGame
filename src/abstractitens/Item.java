@@ -22,7 +22,7 @@ public abstract class Item {
         this.efeito_Desc = efeito_Desc;
         this.desc = desc;
     }
-
+    // Constructor fileName
     public Item(String item_fileName) {
         JSONObject data_item = SaLoHandler.readFromFile(item_fileName);
         this.nome = (String) data_item.get("nome");
@@ -32,7 +32,6 @@ public abstract class Item {
         for (int i = 0; i < arr.length(); i++) {
            this.afinidades.add(arr.getJSONObject(i).toString());
         }
-        //this.afinidades = (ArrayList<String>) data_item.get("afinidades");
         this.efeito_Desc = (String) data_item.get("efeito_desc");
         this.desc = (String) data_item.get("desc");
     }
@@ -49,7 +48,7 @@ public abstract class Item {
 		this.nome = nome;
 	}
 
-	public double getPeso() {
+    public double getPeso() {
 		return peso;
 	}
 

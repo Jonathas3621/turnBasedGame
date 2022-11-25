@@ -13,9 +13,17 @@ import org.json.*;
 public class Main {
     public static void main(String[] args) {
         //Katana salo = (Katana) SaLoHandler.toClass("itens.Katana");
-        //SaLoHandler.saveToFile(new Katana(), "Katana.json");
-        Arma katana = new Arma("savedjson/Katana.json");
-        System.out.println(katana.getNome());
+        //SaLoHandler.saveToFile(new BotasDeCouro(), "BotasDeCouro.json");
+        BotasDeCouro couro = new BotasDeCouro("savedjson/BotasDeCouro.json");
+        System.out.println(couro.getNome() + " foi carregado! :3");
+        System.out.println("Protecao: " + couro.getProtecao());
+        System.out.println("Raridade: " + couro.getRaridade());
+        //Katana katana = new Katana();
+        //System.out.println(katana.getNome()+" foi carregada! :3");
+        //System.out.println("Dano: " + katana.getDano());
+        //System.out.println("Velocidade: " + katana.getVelocidade());
+        //System.out.println("Raridade: " + katana.getRaridade());
+        //battle();
     }
     
     public static void battle() {

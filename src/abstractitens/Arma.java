@@ -23,12 +23,22 @@ public class Arma extends Item implements Usable{
         this.categoria.setReferedArma(this);
     }
 
-    public Arma(String arma_fileName) {
+    /*public Arma(String arma_fileName) {
         super(arma_fileName);
         JSONObject data_arma = SaLoHandler.readFromFile(arma_fileName);
         this.dano = (int) data_arma.get("dano");
         this.estamina = (int) data_arma.get("estamina");
         this.velocidade = (int) data_arma.get("velocidade");
+    }*/
+
+    public Arma(String arma_fileName, ArmaType tipo) {
+        super(arma_fileName);
+        JSONObject data_arma = SaLoHandler.readFromFile(arma_fileName);
+        this.dano = (int) data_arma.get("dano");
+        this.estamina = (int) data_arma.get("estamina");
+        this.velocidade = (int) data_arma.get("velocidade");
+        this.categoria = tipo;
+        this.categoria.setReferedArma(this);
     }
 	
     // Use
