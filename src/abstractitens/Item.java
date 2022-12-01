@@ -3,9 +3,9 @@ package abstractitens;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 import org.json.*;
-import gamehandlers.SaLoHandler;
+import gamehandlers.*;
 
-public abstract class Item {
+public abstract class Item implements SavableObject {
 	private String nome;
 	private double peso;
 	private String raridade = "comum";	//Inicialmente tipo String. Pode mudar
@@ -36,8 +36,18 @@ public abstract class Item {
         this.desc = (String) data_item.get("desc");
     }
 	 
-	// Abstract methods
-	//public abstract void activate(); //Nem todo item necessita ter efeito ativo
+	// Abstract implementations
+	public JSONObject getSaveJson() {
+		JSONObject item_save = new JSONObject();
+        item_save.put("nome", this.getNome());
+        item_save.put("peso", this.getPeso());
+        item_save.put("raridade", this.getRaridade());
+        item_save.put("afinidades", this.getAfinidades());
+        item_save.put("efeito_desc", this.getEfeito_Desc());
+        item_save.put("desc", this.getDesc());
+        return item_save;
+    }
+
 
 	// Getters e Setters
 	public String getNome() {

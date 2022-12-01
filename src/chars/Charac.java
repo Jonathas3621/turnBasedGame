@@ -5,10 +5,10 @@ import estamina.*;
 import org.json.JSONObject;
 import moves.*;
 import usable.Usable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import gamehandlers.*;
 
-public class Charac {
+public class Charac implements SavableObject {
     private String nome;
     private int vida;
     private int forca;
@@ -35,9 +35,10 @@ public class Charac {
         this.sabedoria = sabedoria;
         this.agilidade = agilidade;
         this.estamina = estamina;
-    }
+    } 
     
-    /*public Charac(JSONObject atributes) {
+    public Charac(String fileName) {
+        JSONObject atributes = SaLoHandler.readFromFile(fileName);
     	this.nome = atributes.getString("nome");
         this.vida = atributes.getInt("vida");
         this.forca = atributes.getInt("forca");
@@ -46,8 +47,10 @@ public class Charac {
         this.inteligencia = atributes.getInt("inteligencia");
         this.sabedoria = atributes.getInt("sabedoria");
         this.agilidade = atributes.getInt("agilidade");
-    }*/
-    
+        String estamina_name = atributes.getString("estamina");
+        this.estamina = (EstaminaBar) SaLoHandler.toClass(estamina_name);
+    }
+
     public void attack(Charac target, Usable usable) {
         if (usable != null) usable.use(this, target);   			
         System.out.println(this.getNome() + " ataca " + target.getNome());
@@ -64,6 +67,28 @@ public class Charac {
     
     public void print() {
         System.out.println(" *" + this.nome + " " + this.vida + "hp, equipa " + this.holding.getNome());
+    }
+    
+    @Override
+    public JSONObject getSaveJson() {	// Gera objeto JSON com os dados do Charac
+    	JSONObject char_save = new JSONObject();
+		char_save.put("nome", this.getNome());
+		char_save.put("vida", this.getVida()); 
+        char_save.put("forca", this.getForca());
+		char_save.put("destreza", this.getDestreza());
+		char_save.put("constituicao", this.getConstituicao());
+		char_save.put("inteligencia", this.getInteligencia());
+		char_save.put("sabedoria", this.getSabedoria());
+		char_save.put("agilidade", this.getAgilidade());
+		char_save.put("estamina", this.getEstaminaBar().getClass().getName());
+		List<String> string_moves = new ArrayList<String>();	// Gera uma lista com o nome da classe de cada Move
+		for (Move move : this.getMovimentos()) string_moves.add(move.getClass().getName());
+		char_save.put("movimentos", string_moves);
+		if (this.getHolding() != null) char_save.put("holding", this.getHolding().getClass().getName());
+		if (this.getBotas() != null) char_save.put("botas", this.getBotas().getClass().getName());
+		if (this.getPeitoral() != null) char_save.put("peitoral", this.getPeitoral().getClass().getName());
+		if (this.getElmo() != null) char_save.put("elmo", this.getElmo().getClass().getName());	
+		return char_save;	
     }
     
     // Getters e Setters

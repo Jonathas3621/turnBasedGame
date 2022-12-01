@@ -4,7 +4,7 @@ import abstractitens.Botas;
 import java.util.*;
 
 public class BotasDeCouro extends Botas {
-	public BotasDeCouro() {
+	/*public BotasDeCouro() {
         super(  "Botas de Couro",
                 0.5,
                 "comum",
@@ -12,9 +12,8 @@ public class BotasDeCouro extends Botas {
                 "",
                 "As mais baratas do mercado.",
 	            2);
-	}
-
-    public BotasDeCouro(String fileName) {
-        super(fileName);
+	}*/
+    public BotasDeCouro() {
+        super("savedjson/BotasDeCouro.json");
     }
 }

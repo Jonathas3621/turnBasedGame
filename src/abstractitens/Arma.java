@@ -40,6 +40,16 @@ public class Arma extends Item implements Usable{
         this.categoria = tipo;
         this.categoria.setReferedArma(this);
     }
+    
+    @Override
+    public JSONObject getSaveJson() {
+		JSONObject arma_save = super.getSaveJson();
+        arma_save.put("dano", this.getDano());
+        arma_save.put("estamina", this.getEstamina());
+        arma_save.put("velocidade", this.getVelocidade());
+        //arma_save.put("tipo", this.getType().getClass().getName());
+        return arma_save;
+    }
 	
     // Use
     public void use(Charac user, Charac target) {
