@@ -21,10 +21,14 @@ public class SaLoHandler {
 	public static File dir = new File("src");   //diretório pai
 	public static String dir_s = "savedjson/";    //outro dir pai
 
-	public static void saveToFile(SavableObject object, String fileName) {
-		try {
-			JSONObject json_save = object.getSaveJson();
-			writeJsonIntoFile(json_save, fileName);
+	public static void saveToFile(SavableObject object) {
+        String fileName = object.getSaveFileName();
+        try {
+			JSONObject object_json_save = object.getSaveJson();
+			JSONObject final_json_save = readFromFile(dir_s + fileName);
+            String index = object_json_save.getString("nome");
+            final_json_save.getJSONObject(object.getClass().getName()).put(index, object_json_save);
+            writeJsonIntoFile(final_json_save, fileName);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -92,7 +96,7 @@ public class SaLoHandler {
     private static void writeJsonIntoFile(JSONObject data, String fileName) {   // Para reaproveitar código
         try {
             FileWriter out = new FileWriter(SaLoHandler.dir_s + fileName);
-            out.write(data.toString());
+            out.write(data.toString(2));
             out.write("\n");
             out.close();
         } catch (IOException e) {

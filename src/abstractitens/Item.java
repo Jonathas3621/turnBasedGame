@@ -12,6 +12,7 @@ public abstract class Item implements SavableObject {
 	private ArrayList<String> afinidades = new ArrayList<String>(); //Elementos com os quais o item tem afinidade
 	private String efeito_Desc = "";
 	private String desc = "";
+    private String saveFileName = "savedjson/Itens.JSON";
 
 	// Constructor
 	public Item(String nome, double peso, String raridade, ArrayList<String> afinidades, String efeito_Desc, String desc) {
@@ -22,9 +23,11 @@ public abstract class Item implements SavableObject {
         this.efeito_Desc = efeito_Desc;
         this.desc = desc;
     }
-    // Constructor fileName
-    public Item(String item_fileName) {
-        JSONObject data_item = SaLoHandler.readFromFile(item_fileName);
+    // Constructor fileName - Loads an Item from the savedjson/Itens.JSON
+    protected Item(String item_name, String class_name) {
+        JSONObject data_item = SaLoHandler.readFromFile(this.getSaveFileName());
+        String[] key = {class_name, item_name};
+        data_item = (JSONObject) SaLoHandler.JSONHandler(data_item, key); 
         this.nome = (String) data_item.get("nome");
         this.peso = ((BigDecimal) data_item.get("peso")).doubleValue();
         this.raridade = (String) data_item.get("raridade");
@@ -97,4 +100,9 @@ public abstract class Item implements SavableObject {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+    
+    @Override
+    public String getSaveFileName() {
+        return this.saveFileName;
+    }
 }

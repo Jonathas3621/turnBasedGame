@@ -31,13 +31,15 @@ public class Arma extends Item implements Usable{
         this.velocidade = (int) data_arma.get("velocidade");
     }*/
 
-    public Arma(String arma_fileName, ArmaType tipo) {
-        super(arma_fileName);
-        JSONObject data_arma = SaLoHandler.readFromFile(arma_fileName);
+    public Arma(String arma_name) {
+        super(arma_name, "abstractitens.Arma"); // MAgIc wOrD!
+        JSONObject data_arma = SaLoHandler.readFromFile(this.getSaveFileName());
+        String[] key = {this.getClass().getName(), arma_name};
+        data_arma = (JSONObject) SaLoHandler.JSONHandler(data_arma, key );
         this.dano = (int) data_arma.get("dano");
         this.estamina = (int) data_arma.get("estamina");
         this.velocidade = (int) data_arma.get("velocidade");
-        this.categoria = tipo;
+        this.categoria = (ArmaType) SaLoHandler.toClass(data_arma.getString("tipo"));
         this.categoria.setReferedArma(this);
     }
     
@@ -47,13 +49,13 @@ public class Arma extends Item implements Usable{
         arma_save.put("dano", this.getDano());
         arma_save.put("estamina", this.getEstamina());
         arma_save.put("velocidade", this.getVelocidade());
-        //arma_save.put("tipo", this.getType().getClass().getName());
+        arma_save.put("tipo", this.getType().getClass().getName());
         return arma_save;
     }
 	
     // Use
     public void use(Charac user, Charac target) {
-        this.categoria.use(user, target);
+        this.categoria.use(user, target); 
     }
 
 	// Getters e Setters

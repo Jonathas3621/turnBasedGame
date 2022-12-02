@@ -24,6 +24,7 @@ public class Charac implements SavableObject {
     private Peitoral peitoral;
     private Elmo elmo;
     private List<Item> inventario = new LinkedList<Item>();
+    private String saveFileName = "Characs.JSON";
 
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
@@ -230,5 +231,10 @@ public class Charac implements SavableObject {
         int multiplicador = 2;
         if (this.getHolding() != null) multiplicador = this.getHolding().getVelocidade();
         return this.getAgilidade() * multiplicador;
+    }
+    
+    @Override
+    public String getSaveFileName() {
+        return this.saveFileName;
     }
 }

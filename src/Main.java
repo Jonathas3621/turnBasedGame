@@ -12,18 +12,21 @@ import org.json.*;
 // Exemplo de função Main, apenas experimentando
 public class Main {
     public static void main(String[] args) {
-        Botas katana = (Botas) SaLoHandler.toClass("itens.BotasDeCouro");
-        //SaLoHandler.saveToFile(new BotasDeCouro(), "BotasDeCouro.json");
+        //Botas katana = (Botas) SaLoHandler.toClass("itens.BotasDeCouro");
+        
+        new Arma("Katana");
+        //SaLoHandler.saveToFile(new Arma("savedjson/Katana.json", new EspadaGrande()));
+ 
         /*BotasDeCouro couro = new BotasDeCouro;
         System.out.println(couro.getNome() + " foi carregado! :3");
         System.out.println("Protecao: " + couro.getProtecao()); 
         System.out.println("Raridade: " + couro.getRaridade());
         System.out.println("Classe: " + couro.getClass());*/
         //Katana katana = new Katana();
-        System.out.println(katana.getNome()+" foi carregada! :3");
-        System.out.println("Peso: " + katana.getPeso());
-        System.out.println("Descrição: " + katana.getDesc());
-        System.out.println("Raridade: " + katana.getRaridade());
+        //System.out.println(katana.getNome()+" foi carregada! :3");
+        //System.out.println("Peso: " + katana.getPeso());
+        //System.out.println("Descrição: " + katana.getDesc());
+        //System.out.println("Raridade: " + katana.getRaridade());
         //battle();
     }
     
