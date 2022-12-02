@@ -14,9 +14,15 @@ public class Main {
     public static void main(String[] args) {
         //Botas katana = (Botas) SaLoHandler.toClass("itens.BotasDeCouro");
         
-        new Arma("Katana");
-        //SaLoHandler.saveToFile(new Arma("savedjson/Katana.json", new EspadaGrande()));
- 
+        //Arma katana = new Arma("Katana");
+
+        //System.out.println(katana.getDano());
+        
+    	Charac p1 = new Charac("Abelha", 20, 2, 7, 0, 0, 0, 1, new ManaBar(20));
+        //Charac p1 = new Charac("Mosquito", 20, 2, 4, 0, 0, 0, 6, new ManaBar(30)); 
+        SaLoHandler.saveToFile(p1);
+
+        
         /*BotasDeCouro couro = new BotasDeCouro;
         System.out.println(couro.getNome() + " foi carregado! :3");
         System.out.println("Protecao: " + couro.getProtecao()); 

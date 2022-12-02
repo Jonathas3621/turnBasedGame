@@ -13,20 +13,22 @@ import org.json.JSONObject;
 import chars.Charac;
 import moves.Move; 
 import abstractitens.*; 
-import java.util.List;
-import java.util.ArrayList;
 
 public class SaLoHandler {
 
 	public static File dir = new File("src");   //diretório pai
-	public static String dir_s = "savedjson/";    //outro dir pai
+	private static String dir_s = "savedjson/";    //outro dir pai
 
 	public static void saveToFile(SavableObject object) {
         String fileName = object.getSaveFileName();
         try {
-			JSONObject object_json_save = object.getSaveJson();
-			JSONObject final_json_save = readFromFile(dir_s + fileName);
+            JSONObject object_json_save = object.getSaveJson();
+			JSONObject final_json_save = readFromFile(fileName);
             String index = object_json_save.getString("nome");
+
+            if (!final_json_save.has(object.getClass().getName()))
+                final_json_save.put(object.getClass().getName(), new JSONObject());
+            
             final_json_save.getJSONObject(object.getClass().getName()).put(index, object_json_save);
             writeJsonIntoFile(final_json_save, fileName);
 		} catch (Exception e) {
@@ -95,7 +97,7 @@ public class SaLoHandler {
 
     private static void writeJsonIntoFile(JSONObject data, String fileName) {   // Para reaproveitar código
         try {
-            FileWriter out = new FileWriter(SaLoHandler.dir_s + fileName);
+            FileWriter out = new FileWriter(fileName);
             out.write(data.toString(2));
             out.write("\n");
             out.close();

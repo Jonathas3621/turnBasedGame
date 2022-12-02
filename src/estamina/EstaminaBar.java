@@ -1,9 +1,13 @@
 package estamina;
 
-public abstract class EstaminaBar {
+import gamehandlers.SavableObject;
+import org.json.JSONObject;
+
+public abstract class EstaminaBar implements SavableObject{
 	private int max;
-	private int pontosEstamina;
-	
+	private int pontosEstamina; 
+    private String save_filename = "";
+
 	public EstaminaBar(int max) {
 		this.max = max;
 		this.pontosEstamina = max;
@@ -34,4 +38,16 @@ public abstract class EstaminaBar {
 	public void setPE(int pe) {
 		this.pontosEstamina = pe;
 	}
+    
+    public JSONObject getSaveJson() {
+        JSONObject estamina_save = new JSONObject();
+        estamina_save.put("tipo", this.getClass().getName());
+        estamina_save.put("pontosEstamina", this.getMax());
+        return estamina_save;
+    }
+
+    public String getSaveFileName() { // Método inutilizado...
+        return this.save_filename;
+    }
+
 }

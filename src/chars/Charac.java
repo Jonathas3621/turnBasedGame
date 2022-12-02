@@ -18,13 +18,13 @@ public class Charac implements SavableObject {
     private int sabedoria;
     private int agilidade;
     private EstaminaBar estamina;
-    private Move[] movimentos;
+    private Move[] movimentos = {};
     private Arma holding;
     private Botas botas;
     private Peitoral peitoral;
     private Elmo elmo;
     private List<Item> inventario = new LinkedList<Item>();
-    private String saveFileName = "Characs.JSON";
+    private String saveFileName = "savedjson/Characs.JSON";
 
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
@@ -81,9 +81,10 @@ public class Charac implements SavableObject {
 		char_save.put("inteligencia", this.getInteligencia());
 		char_save.put("sabedoria", this.getSabedoria());
 		char_save.put("agilidade", this.getAgilidade());
-		char_save.put("estamina", this.getEstaminaBar().getClass().getName());
+		//char_save.put("estamina", this.getEstaminaBar().getClass().getName());
+		char_save.put("estamina", this.getEstaminaBar().getSaveJson());
 		List<String> string_moves = new ArrayList<String>();	// Gera uma lista com o nome da classe de cada Move
-		for (Move move : this.getMovimentos()) string_moves.add(move.getClass().getName());
+		for (Move move : this.getMovimentos()) string_moves.add(move.getNome());
 		char_save.put("movimentos", string_moves);
 		if (this.getHolding() != null) char_save.put("holding", this.getHolding().getClass().getName());
 		if (this.getBotas() != null) char_save.put("botas", this.getBotas().getClass().getName());
