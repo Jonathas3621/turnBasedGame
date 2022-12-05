@@ -1,0 +1,11 @@
+{
+"nome":"Katana",
+"peso":0.75,
+"raridade":"comum",
+"afinidades":[],
+"efeito_desc":"",
+"desc":"Posso sentir meu sangue ancestral correndo em minhas veias!!!",
+"dano":13,
+"estamina":5,
+"velocidade":2
+}

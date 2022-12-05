@@ -1,0 +1,19 @@
+{"chars.Charac": {"Abelha": {
+  "botas": null,
+  "inteligencia": 0,
+  "elmo": null,
+  "vida": 20,
+  "agilidade": 1,
+  "nome": "Abelha",
+  "sabedoria": 0,
+  "holding": null,
+  "peitoral": null,
+  "estamina": {
+    "tipo": "estamina.ManaBar",
+    "pontosEstamina": 20
+  },
+  "forca": 2,
+  "movimentos": [],
+  "destreza": 7,
+  "constituicao": 0
+}}}
