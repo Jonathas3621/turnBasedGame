@@ -14,14 +14,21 @@ public class Main {
     public static void main(String[] args) {
         //Botas katana = (Botas) SaLoHandler.toClass("itens.BotasDeCouro");
         
+        Armadura item = new PeitoralDeCouro();
+        System.out.println(item.getNome());
+        System.out.println(item.getRaridade());
+
+        //SaLoHandler.saveToFile(bota);
+
         //Arma katana = new Arma("Katana");
-
         //System.out.println(katana.getDano());
-        
-    	Charac p1 = new Charac("Abelha", 20, 2, 7, 0, 0, 0, 1, new ManaBar(20));
+    	
+        //Charac p1 = new Charac("Abelha");
+        //System.out.println(p1.getNome());
+        //p1.equip(new Arma("Katana"));
         //Charac p1 = new Charac("Mosquito", 20, 2, 4, 0, 0, 0, 6, new ManaBar(30)); 
-        SaLoHandler.saveToFile(p1);
-
+        //SaLoHandler.saveToFile(p1);
+        //System.out.println(p1.getSaveJson().toString());
         
         /*BotasDeCouro couro = new BotasDeCouro;
         System.out.println(couro.getNome() + " foi carregado! :3");
@@ -84,7 +91,7 @@ public class Main {
             }*/
 
             ordem = Main.getCharacOrder(teamA, teamB);  // Decide a ordem de ataque baseado na iniciativa
-       
+                
             for (Charac player : ordem) {   // Debug Iniciativa
                 System.out.println("Iniciativa de " + player.getNome() + ": " + player.getIniciativa());
             }

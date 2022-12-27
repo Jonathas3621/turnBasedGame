@@ -20,11 +20,11 @@ public class Charac implements SavableObject {
     private EstaminaBar estamina;
     private Move[] movimentos = {};
     private Arma holding;
-    private Botas botas;
-    private Peitoral peitoral;
-    private Elmo elmo;
+    private Armadura botas;
+    private Armadura peitoral;
+    private Armadura elmo;
     private List<Item> inventario = new LinkedList<Item>();
-    private String saveFileName = "savedjson/Characs.JSON";
+    private String saveFileName = "savedjson/Characs.json";
 
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
@@ -38,9 +38,13 @@ public class Charac implements SavableObject {
         this.estamina = estamina;
     } 
     
-    public Charac(String fileName) {
-        JSONObject atributes = SaLoHandler.readFromFile(fileName);
-    	this.nome = atributes.getString("nome");
+    public Charac(String charac_name) {
+        // Procura o personagem no Charac.JSON e retorna os atributes
+        JSONObject atributes = SaLoHandler.readFromFile(this.getSaveFileName());
+        String[] key = {this.getClass().getName(), charac_name};
+        atributes = (JSONObject) SaLoHandler.JSONHandler(atributes, key);
+    	
+        this.nome = atributes.getString("nome");
         this.vida = atributes.getInt("vida");
         this.forca = atributes.getInt("forca");
         this.destreza = atributes.getInt("destreza");
@@ -48,8 +52,12 @@ public class Charac implements SavableObject {
         this.inteligencia = atributes.getInt("inteligencia");
         this.sabedoria = atributes.getInt("sabedoria");
         this.agilidade = atributes.getInt("agilidade");
-        String estamina_name = atributes.getString("estamina");
-        this.estamina = (EstaminaBar) SaLoHandler.toClass(estamina_name);
+        
+        JSONObject estamina = atributes.getJSONObject("estamina");
+        String estamina_name = estamina.getString("tipo");
+        Object[] estamina_max = {estamina.getInt("pontosEstamina")};
+        Class[] parameters_classes = {int.class};
+        this.estamina = (EstaminaBar) SaLoHandler.toClass(estamina_name, parameters_classes, estamina_max);
     }
 
     public void attack(Charac target, Usable usable) {
@@ -81,16 +89,31 @@ public class Charac implements SavableObject {
 		char_save.put("inteligencia", this.getInteligencia());
 		char_save.put("sabedoria", this.getSabedoria());
 		char_save.put("agilidade", this.getAgilidade());
-		//char_save.put("estamina", this.getEstaminaBar().getClass().getName());
 		char_save.put("estamina", this.getEstaminaBar().getSaveJson());
 		List<String> string_moves = new ArrayList<String>();	// Gera uma lista com o nome da classe de cada Move
 		for (Move move : this.getMovimentos()) string_moves.add(move.getNome());
 		char_save.put("movimentos", string_moves);
-		if (this.getHolding() != null) char_save.put("holding", this.getHolding().getClass().getName());
-		if (this.getBotas() != null) char_save.put("botas", this.getBotas().getClass().getName());
-		if (this.getPeitoral() != null) char_save.put("peitoral", this.getPeitoral().getClass().getName());
-		if (this.getElmo() != null) char_save.put("elmo", this.getElmo().getClass().getName());	
-		return char_save;	
+        try {
+            char_save.put("holding", this.getHolding().getClass().getName());
+        } catch (NullPointerException e) {
+            char_save.put("holding", JSONObject.NULL);
+        }
+        try {
+            char_save.put("botas", this.getBotas().getClass().getName());
+        } catch (NullPointerException e) {
+            char_save.put("botas", JSONObject.NULL);
+        }
+        try {
+		    char_save.put("peitoral", this.getPeitoral().getClass().getName());
+        } catch (NullPointerException e) {
+            char_save.put("peitoral", JSONObject.NULL);
+        }
+        try {
+            char_save.put("elmo", this.getElmo().getClass().getName());	
+        } catch (NullPointerException e) {
+            char_save.put("elmo", JSONObject.NULL);
+        }
+        return char_save;	
     }
     
     // Getters e Setters
@@ -201,31 +224,30 @@ public class Charac implements SavableObject {
 		this.holding = holding;
 	}
 	
-	public Botas getBotas() {
+	public Armadura getBotas() {
 		return this.botas;
 	}
 
-    public Peitoral getPeitoral() {
+    public Armadura getPeitoral() {
         return this.peitoral;
     }
 
-    public Elmo getElmo() {
+    public Armadura getElmo() {
         return this.elmo;
     }
 
-    public void equip(Botas new_botas) {
-        if (botas != null) inventario.add(this.botas);
-        this.botas = new_botas;
-    }
-
-    public void equip(Peitoral new_peitoral) {
-        if (peitoral != null) inventario.add(this.peitoral);
-        this.peitoral = new_peitoral;
-    }
-
-    public void equip(Elmo new_elmo) {
-        if (this.elmo != null) inventario.add(this.elmo);
-        this.elmo = new_elmo;
+    public void equip(Armadura new_armadura) {
+        String tipo = new_armadura.getTipo();
+        if (tipo.equals("elmo")) {
+            if (this.elmo != null) inventario.add(this.elmo);
+            this.elmo = new_armadura;
+        } else if (tipo.equals("peitoral")) {
+            if (peitoral != null) inventario.add(this.peitoral);
+            this.peitoral = new_armadura;
+        } else if (tipo.equals("botas")) {
+            if (botas != null) inventario.add(this.botas);
+            this.botas = new_armadura;
+        }
     }
 
     public int getIniciativa() {

@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.List;
 
 import org.json.JSONObject;
 
@@ -17,12 +18,12 @@ import abstractitens.*;
 public class SaLoHandler {
 
 	public static File dir = new File("src");   //diretório pai
-	private static String dir_s = "savedjson/";    //outro dir pai
+	//public static String dir_s = "savedjson/";    //outro dir pai
 
 	public static void saveToFile(SavableObject object) {
         String fileName = object.getSaveFileName();
         try {
-            JSONObject object_json_save = object.getSaveJson();
+			JSONObject object_json_save = object.getSaveJson();
 			JSONObject final_json_save = readFromFile(fileName);
             String index = object_json_save.getString("nome");
 
@@ -32,7 +33,7 @@ public class SaLoHandler {
             final_json_save.getJSONObject(object.getClass().getName()).put(index, object_json_save);
             writeJsonIntoFile(final_json_save, fileName);
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("SaveToFile Exception: " + e);
 		}
 	}
 
@@ -92,6 +93,20 @@ public class SaLoHandler {
     	} catch (Exception e) {
     	    System.out.println("Exception: " + e);
     	}
+        return null;
+    }
+
+    // toClass with arguments
+    public static Object toClass(String class_name, Class[] parameters, Object[] arguments) {
+        try {
+            @SuppressWarnings("rawtypes")
+            Class classe = Class.forName(class_name);
+            @SuppressWarnings("unchecked")
+            Object objeto = classe.getDeclaredConstructor(parameters).newInstance(arguments);
+            return objeto;
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
         return null;
     }
 

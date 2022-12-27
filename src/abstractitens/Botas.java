@@ -2,7 +2,7 @@ package abstractitens;
 
 import java.util.*;
 
-public abstract class Botas extends Armadura {
+public class Botas extends Armadura {
 	public Botas(String nome, double peso, String raridade, ArrayList<String> afinidades, String efeito_Desc, String desc, int protecao) {
         super(  nome,
                 peso,
@@ -13,7 +13,7 @@ public abstract class Botas extends Armadura {
                 protecao);
     }
 
-    public Botas(String armour_fileName) {
-        super(armour_fileName);
+    public Botas(String armour_name) {
+        super(armour_name, "abstractitens.Botas");
     }
 }

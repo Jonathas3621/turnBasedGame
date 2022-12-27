@@ -1,19 +1,10 @@
 package itens;
 
-import abstractitens.Botas;
+import abstractitens.Armadura;
 import java.util.*;
 
-public class BotasDeCouro extends Botas {
-	/*public BotasDeCouro() {
-        super(  "Botas de Couro",
-                0.5,
-                "comum",
-                new ArrayList<String>(),
-                "",
-                "As mais baratas do mercado.",
-	            2);
-	}*/
+public class BotasDeCouro extends Armadura {
     public BotasDeCouro() {
-        super("savedjson/BotasDeCouro.json");
+        super("Botas de Couro");
     }
 }

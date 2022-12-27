@@ -12,7 +12,7 @@ public abstract class Item implements SavableObject {
 	private ArrayList<String> afinidades = new ArrayList<String>(); //Elementos com os quais o item tem afinidade
 	private String efeito_Desc = "";
 	private String desc = "";
-    private String saveFileName = "savedjson/Itens.JSON";
+    private String saveFileName = "savedjson/Itens.json";
 
 	// Constructor
 	public Item(String nome, double peso, String raridade, ArrayList<String> afinidades, String efeito_Desc, String desc) {

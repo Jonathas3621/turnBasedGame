@@ -1,13 +1,9 @@
 package itens;
 
-import abstractitens.Peitoral;
+import abstractitens.Armadura;
 
-public class PeitoralDeCouro extends Peitoral {
+public class PeitoralDeCouro extends Armadura {
 	public PeitoralDeCouro() {
-		this.setNome("Peitoral de Couro");
-		this.setPeso(0.75);
-		this.setRaridade("comum");
-		this.setDesc("O mais simples do mercado.");
-		this.setProtecao(4); // Um pra cada pé
+        super("Peitoral de Couro");
 	}
 }

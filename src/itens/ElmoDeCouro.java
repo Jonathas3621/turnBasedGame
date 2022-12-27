@@ -1,13 +1,9 @@
 package itens;
 
-import abstractitens.Elmo;
+import abstractitens.Armadura;
 
-public class ElmoDeCouro extends Elmo {
+public class ElmoDeCouro extends Armadura {
 	public ElmoDeCouro() {
-		this.setNome("Elmo de Couro");
-		this.setPeso(0.1);
-		this.setRaridade("comum");
-		this.setDesc("Mais pra esquentar a orelha");
-		this.setProtecao(1); 
+        super("Elmo de Couro");
 	}
 }
