@@ -28,6 +28,7 @@ public abstract class Armadura extends Item {
         String[] key = {armour_class, armour_name};
         data_armour = (JSONObject) SaLoHandler.JSONHandler(data_armour, key);
         this.setProtecao( (int) data_armour.get("protecao"));
+        this.setTipo(data_armour.getString("tipo"));
     }
 	
 	@Override

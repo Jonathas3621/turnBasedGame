@@ -2,7 +2,7 @@ package chars;
 
 import abstractitens.*;
 import estamina.*;
-import org.json.JSONObject;
+import org.json.*;
 import moves.*;
 import usable.Usable;
 import java.util.*;
@@ -41,7 +41,7 @@ public class Charac implements SavableObject {
     public Charac(String charac_name) {
         // Procura o personagem no Charac.JSON e retorna os atributes
         JSONObject atributes = SaLoHandler.readFromFile(this.getSaveFileName());
-        String[] key = {this.getClass().getName(), charac_name};
+        String[] key = {this.getAddress(), charac_name};
         atributes = (JSONObject) SaLoHandler.JSONHandler(atributes, key);
     	
         this.nome = atributes.getString("nome");
@@ -58,6 +58,30 @@ public class Charac implements SavableObject {
         Object[] estamina_max = {estamina.getInt("pontosEstamina")};
         Class[] parameters_classes = {int.class};
         this.estamina = (EstaminaBar) SaLoHandler.toClass(estamina_name, parameters_classes, estamina_max);
+
+        try {
+            this.botas = (Armadura) SaLoHandler.toClass(atributes.getString("botas"));
+        } catch (JSONException e) {
+            this.botas = null;
+        }
+
+        try {
+            this.peitoral = (Armadura) SaLoHandler.toClass(atributes.getString("peitoral"));
+        } catch (JSONException e) {        
+            this.peitoral = null;
+        }
+
+        try {
+            this.elmo = (Armadura) SaLoHandler.toClass(atributes.getString("elmo"));
+        } catch (JSONException e) {
+            this.elmo = null;
+        }
+
+        try {
+            this.holding = (Arma) SaLoHandler.toClass(atributes.getString("holding"));
+        } catch (JSONException e) {
+            this.holding = null;
+        }    
     }
 
     public void attack(Charac target, Usable usable) {
@@ -94,26 +118,31 @@ public class Charac implements SavableObject {
 		for (Move move : this.getMovimentos()) string_moves.add(move.getNome());
 		char_save.put("movimentos", string_moves);
         try {
-            char_save.put("holding", this.getHolding().getClass().getName());
+            char_save.put("holding", this.getHolding().getAddress());
         } catch (NullPointerException e) {
             char_save.put("holding", JSONObject.NULL);
         }
         try {
-            char_save.put("botas", this.getBotas().getClass().getName());
+            char_save.put("botas", this.getBotas().getAddress());
         } catch (NullPointerException e) {
             char_save.put("botas", JSONObject.NULL);
         }
         try {
-		    char_save.put("peitoral", this.getPeitoral().getClass().getName());
+		    char_save.put("peitoral", this.getPeitoral().getAddress());
         } catch (NullPointerException e) {
             char_save.put("peitoral", JSONObject.NULL);
         }
         try {
-            char_save.put("elmo", this.getElmo().getClass().getName());	
+            char_save.put("elmo", this.getElmo().getAddress());	
         } catch (NullPointerException e) {
             char_save.put("elmo", JSONObject.NULL);
         }
         return char_save;	
+    }
+
+    @Override
+    public String getAddress() {
+        return this.getClass().getName();
     }
     
     // Getters e Setters

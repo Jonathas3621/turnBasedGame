@@ -40,6 +40,7 @@ public abstract class Item implements SavableObject {
     }
 	 
 	// Abstract implementations
+    @Override
 	public JSONObject getSaveJson() {
 		JSONObject item_save = new JSONObject();
         item_save.put("nome", this.getNome());
@@ -49,6 +50,11 @@ public abstract class Item implements SavableObject {
         item_save.put("efeito_desc", this.getEfeito_Desc());
         item_save.put("desc", this.getDesc());
         return item_save;
+    }
+
+    @Override
+    public String getAddress() {
+        return this.getClass().getName();
     }
 
 

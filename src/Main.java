@@ -13,10 +13,27 @@ import org.json.*;
 public class Main {
     public static void main(String[] args) {
         //Botas katana = (Botas) SaLoHandler.toClass("itens.BotasDeCouro");
-        
-        Armadura item = new PeitoralDeCouro();
+        Armadura item = new BotasDeCouro();
         System.out.println(item.getNome());
         System.out.println(item.getRaridade());
+
+        Charac player = new Charac("Abelha");
+        System.out.println(player.getNome());
+        System.out.println("Vida: " + player.getVida());
+        System.out.println("Forca: " + player.getForca());
+        System.out.println("Destreza:" + player.getDestreza());
+        System.out.println("Constituicao: " + player.getConstituicao());
+        System.out.println("Inteligencia: " + player.getInteligencia());
+        System.out.println("Sabedoria: " + player.getSabedoria());
+        System.out.println("Agilidade: " + player.getAgilidade());
+        System.out.println("Arma: " + player.getHolding());
+        System.out.println("Botas: " + player.getBotas());
+        System.out.println("Peitoral: " + player.getPeitoral());
+        System.out.println("Elmo: " + player.getElmo());
+        System.out.println("Estamina: " + player.getEstaminaBar());
+        System.out.println("PE atuais: " + player.getPE());
+        System.out.println("PE máximo: " + player.getMaxPE());
+        System.out.println("Movimentos: " + player.getMovimentos());
 
         //SaLoHandler.saveToFile(bota);
 

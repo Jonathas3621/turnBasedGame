@@ -7,7 +7,7 @@
   "nome": "Abelha",
   "sabedoria": 0,
   "holding": null,
-  "peitoral": null,
+  "peitoral": "itens.PeitoralDeCouro",
   "estamina": {
     "tipo": "estamina.ManaBar",
     "pontosEstamina": 20
