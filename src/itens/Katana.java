@@ -7,6 +7,6 @@ import java.util.*;
 public class Katana extends Arma {
 	
 	public Katana() {
-		super("savedjson/Katana.json");
+		super("Katana");
 	}
 }

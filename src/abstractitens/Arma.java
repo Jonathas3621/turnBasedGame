@@ -4,13 +4,14 @@ import usable.Usable;
 import java.util.*;
 import chars.Charac;
 import org.json.*;
-import gamehandlers.SaLoHandler;
+import gamehandlers.*;
 
-public class Arma extends Item implements Usable{
+public abstract class Arma extends Item implements Usable, SavableObject {
 	private int dano;
 	private int estamina;
 	private int velocidade; //1 lenta, 2 normal, 3 rápida
 	private ArmaType categoria;  //ArmaType implements Usable
+    private String arma_address = "armas";
     //protected String[] classes;
 	
 	// Constructor
@@ -32,9 +33,9 @@ public class Arma extends Item implements Usable{
     }*/
 
     public Arma(String arma_name) {
-        super(arma_name, "abstractitens.Arma"); // MAgIc wOrD!
+        super(arma_name, "armas"); // MAgIc wOrD! arma_address/getAddress()
         JSONObject data_arma = SaLoHandler.readFromFile(this.getSaveFileName());
-        String[] key = {this.getClass().getName(), arma_name};
+        String[] key = {this.getAddress(), arma_name};
         data_arma = (JSONObject) SaLoHandler.JSONHandler(data_arma, key );
         this.dano = (int) data_arma.get("dano");
         this.estamina = (int) data_arma.get("estamina");
@@ -51,6 +52,15 @@ public class Arma extends Item implements Usable{
         arma_save.put("velocidade", this.getVelocidade());
         arma_save.put("tipo", this.getType().getClass().getName());
         return arma_save;
+    }
+
+    @Override
+    public String getAddress() {
+        return this.arma_address;
+    }
+
+    public String className() {
+        return this.getClass().getName();
     }
 	
     // Use

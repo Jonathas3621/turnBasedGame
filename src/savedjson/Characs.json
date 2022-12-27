@@ -1,19 +1,19 @@
-{"chars.Charac": {"Abelha": {
-  "botas": null,
-  "inteligencia": 0,
-  "elmo": null,
-  "vida": 20,
-  "agilidade": 1,
-  "nome": "Abelha",
-  "sabedoria": 0,
-  "holding": null,
-  "peitoral": "itens.PeitoralDeCouro",
-  "estamina": {
-    "tipo": "estamina.ManaBar",
-    "pontosEstamina": 20
-  },
-  "forca": 2,
-  "movimentos": [],
-  "destreza": 7,
-  "constituicao": 0
+{"characs": {"Abelha": {
+    "botas": "itens.BotasDeCouro",
+    "inteligencia": 0,
+    "elmo": "itens.ElmoDeCouro",
+    "vida": 20,
+    "agilidade": 1,
+    "nome": "Abelha",
+    "sabedoria": 0,
+    "holding": "itens.Katana",
+    "peitoral": "itens.PeitoralDeAco",
+    "estamina": {
+        "tipo": "estamina.ManaBar",
+        "pontosEstamina": 20
+    },
+    "forca": 2,
+    "movimentos": [],
+    "destreza": 7,
+    "constituicao": 0
 }}}

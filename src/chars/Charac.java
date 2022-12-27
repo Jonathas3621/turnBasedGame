@@ -25,6 +25,7 @@ public class Charac implements SavableObject {
     private Armadura elmo;
     private List<Item> inventario = new LinkedList<Item>();
     private String saveFileName = "savedjson/Characs.json";
+    private String characs_address = "characs";
 
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
@@ -102,6 +103,9 @@ public class Charac implements SavableObject {
         System.out.println(" *" + this.nome + " " + this.vida + "hp, equipa " + this.holding.getNome());
     }
     
+
+    // SavableObject interface
+
     @Override
     public JSONObject getSaveJson() {	// Gera objeto JSON com os dados do Charac
     	JSONObject char_save = new JSONObject();
@@ -118,22 +122,22 @@ public class Charac implements SavableObject {
 		for (Move move : this.getMovimentos()) string_moves.add(move.getNome());
 		char_save.put("movimentos", string_moves);
         try {
-            char_save.put("holding", this.getHolding().getAddress());
+            char_save.put("holding", this.getHolding().className());
         } catch (NullPointerException e) {
             char_save.put("holding", JSONObject.NULL);
         }
         try {
-            char_save.put("botas", this.getBotas().getAddress());
+            char_save.put("botas", this.getBotas().className());
         } catch (NullPointerException e) {
             char_save.put("botas", JSONObject.NULL);
         }
         try {
-		    char_save.put("peitoral", this.getPeitoral().getAddress());
+		    char_save.put("peitoral", this.getPeitoral().className());
         } catch (NullPointerException e) {
             char_save.put("peitoral", JSONObject.NULL);
         }
         try {
-            char_save.put("elmo", this.getElmo().getAddress());	
+            char_save.put("elmo", this.getElmo().className());	
         } catch (NullPointerException e) {
             char_save.put("elmo", JSONObject.NULL);
         }
@@ -142,6 +146,11 @@ public class Charac implements SavableObject {
 
     @Override
     public String getAddress() {
+        return this.characs_address;
+    }
+
+    @Override
+    public String className() {
         return this.getClass().getName();
     }
     

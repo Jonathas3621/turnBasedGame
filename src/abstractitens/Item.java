@@ -28,15 +28,15 @@ public abstract class Item implements SavableObject {
         JSONObject data_item = SaLoHandler.readFromFile(this.getSaveFileName());
         String[] key = {class_name, item_name};
         data_item = (JSONObject) SaLoHandler.JSONHandler(data_item, key); 
-        this.nome = (String) data_item.get("nome");
-        this.peso = ((BigDecimal) data_item.get("peso")).doubleValue();
-        this.raridade = (String) data_item.get("raridade");
-        JSONArray arr = (JSONArray) data_item.get("afinidades");
+        this.nome = data_item.getString("nome");
+        this.peso = data_item.getDouble("peso");
+        this.raridade = data_item.getString("raridade");
+        JSONArray arr = data_item.getJSONArray("afinidades");
         for (int i = 0; i < arr.length(); i++) {
            this.afinidades.add(arr.getJSONObject(i).toString());
         }
-        this.efeito_Desc = (String) data_item.get("efeito_desc");
-        this.desc = (String) data_item.get("desc");
+        this.efeito_Desc = data_item.getString("efeito_desc");
+        this.desc = data_item.getString("desc");
     }
 	 
 	// Abstract implementations

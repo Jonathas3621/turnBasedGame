@@ -16,7 +16,7 @@ import moves.Move;
 import abstractitens.*; 
 
 public class SaLoHandler {
-
+    private static int identation = 4;
 	public static File dir = new File("src");   //diretório pai
 	//public static String dir_s = "savedjson/";    //outro dir pai
 
@@ -27,10 +27,10 @@ public class SaLoHandler {
 			JSONObject final_json_save = readFromFile(fileName);
             String index = object_json_save.getString("nome");
 
-            if (!final_json_save.has(object.getClass().getName()))
-                final_json_save.put(object.getClass().getName(), new JSONObject());
+            if (!final_json_save.has(object.getAddress()))
+                final_json_save.put(object.getAddress(), new JSONObject());
             
-            final_json_save.getJSONObject(object.getClass().getName()).put(index, object_json_save);
+            final_json_save.getJSONObject(object.getAddress()).put(index, object_json_save);
             writeJsonIntoFile(final_json_save, fileName);
 		} catch (Exception e) {
 			System.out.println("SaveToFile Exception: " + e);
@@ -71,7 +71,7 @@ public class SaLoHandler {
 		
 		for(int key = 0; key < keys.length; key++) {
 			
-			if(key == keys.length-1) {
+			if (key == keys.length-1) {
 				return newJson.get(keys[key]);
 			}
 			
@@ -113,7 +113,7 @@ public class SaLoHandler {
     private static void writeJsonIntoFile(JSONObject data, String fileName) {   // Para reaproveitar código
         try {
             FileWriter out = new FileWriter(fileName);
-            out.write(data.toString(2));
+            out.write(data.toString(SaLoHandler.identation));
             out.write("\n");
             out.close();
         } catch (IOException e) {

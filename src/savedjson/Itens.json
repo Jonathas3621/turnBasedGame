@@ -1,56 +1,70 @@
 {
-"abstractitens.Armadura": {
-    "Peitoral de Couro": {
-        "peso": 0.75,
-        "raridade": "comum",
-        "protecao": 4,
-        "nome": "Peitoral de Couro",
-        "afinidades": [],
-        "efeito_desc": "",
-        "desc": "O mais simples do mercado",
-        "tipo": "peitoral"
+    "armas": {
+        "Espada de Madeira": {
+            "dano": 4,
+            "tipo": "abstractitens.EspadaGrande",
+            "velocidade": 2,
+            "peso": 1,
+            "raridade": "comum",
+            "estamina": 5,
+            "nome": "Espada de Madeira",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "Não corta, mas ainda machuca"
+        },
+        "Katana": {
+            "dano": 13,
+            "tipo": "abstractitens.EspadaGrande",
+            "velocidade": 2,
+            "peso": 0.75,
+            "raridade": "comum",
+            "estamina": 5,
+            "nome": "Katana",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "A verdadeira espada japonesa!"
+        }
     },
-    "Peitoral de Aço": {
-        "peso": 1.25,
-        "raridade": "comum",
-        "protecao": 7,
-        "nome": "Peitoral de Aço",
-        "afinidades": [],
-        "efeito_desc": "",
-        "desc": "O favorito para guerras",
-        "tipo": "peitoral"
-    },
-    "Elmo de Couro": {
-        "peso": 0.1,
-        "raridade": "comum",
-        "protecao": 1,
-        "nome": "Elmo de Couro",
-        "afinidades": [],
-        "efeito_desc": "",
-        "desc": "Mais pra esquentar a orelha",
-        "tipo": "elmo"
-    },
-    "Botas de Couro": {
-        "peso": 0.5,
-        "raridade": "comum",
-        "protecao": 2,
-        "nome": "Botas de Couro",
-        "afinidades": [],
-        "efeito_desc": "",
-        "desc": "As mais baratas do mercado.",
-        "tipo": "botas"
-    }},
-"abstractitens.Arma": {
-    "Katana": {
-        "dano": 13,
-        "tipo": "abstractitens.EspadaGrande",
-        "velocidade": 2,
-        "peso": 0.75,
-        "raridade": "comum",
-        "estamina": 5,
-        "nome": "Katana",
-        "afinidades": [],
-        "efeito_desc": "",
-        "desc": "A verdadeira espada japonesa!"
-    }}
+    "armaduras": {
+        "Botas de Couro": {
+            "tipo": "botas",
+            "peso": 0.5,
+            "raridade": "comum",
+            "protecao": 2,
+            "nome": "Botas de Couro",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "As mais baratas do mercado."
+        },
+        "Peitoral de Aço": {
+            "tipo": "peitoral",
+            "peso": 1.25,
+            "raridade": "comum",
+            "protecao": 7,
+            "nome": "Peitoral de Aço",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "O favorito para guerras"
+        },
+        "Elmo de Couro": {
+            "tipo": "elmo",
+            "peso": 0.1,
+            "raridade": "comum",
+            "protecao": 1,
+            "nome": "Elmo de Couro",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "Mais pra esquentar a orelha"
+        },
+        "Peitoral de Couro": {
+            "tipo": "peitoral",
+            "peso": 0.75,
+            "raridade": "comum",
+            "protecao": 4,
+            "nome": "Peitoral de Couro",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "O mais simples do mercado"
+        }
+    }
 }

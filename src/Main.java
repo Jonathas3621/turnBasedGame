@@ -13,11 +13,25 @@ import org.json.*;
 public class Main {
     public static void main(String[] args) {
         //Botas katana = (Botas) SaLoHandler.toClass("itens.BotasDeCouro");
-        Armadura item = new BotasDeCouro();
+        Arma item = new Katana();
         System.out.println(item.getNome());
         System.out.println(item.getRaridade());
+        
+        Armadura novo_peitoral = new PeitoralDeAco();
+        System.out.println(novo_peitoral.getNome());
+        System.out.println(novo_peitoral.getProtecao());
+
+        Arma wooden_sword = new EspadaDeMadeira();
+        System.out.println(wooden_sword.getNome());
+        System.out.println(wooden_sword.getPeso());
 
         Charac player = new Charac("Abelha");
+        player.equip(new BotasDeCouro());
+        player.equip(new ElmoDeCouro());
+        player.equip(new PeitoralDeAco());
+        player.equip(new Katana());
+
+        System.out.println();
         System.out.println(player.getNome());
         System.out.println("Vida: " + player.getVida());
         System.out.println("Forca: " + player.getForca());
@@ -35,7 +49,9 @@ public class Main {
         System.out.println("PE máximo: " + player.getMaxPE());
         System.out.println("Movimentos: " + player.getMovimentos());
 
-        //SaLoHandler.saveToFile(bota);
+        SaLoHandler.saveToFile(player);
+        SaLoHandler.saveToFile(item);
+        SaLoHandler.saveToFile(novo_peitoral);
 
         //Arma katana = new Arma("Katana");
         //System.out.println(katana.getDano());
