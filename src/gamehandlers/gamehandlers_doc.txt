@@ -1,0 +1,99 @@
+                            Gamehandlers Documentation
+| 27/12/22 | 22:43 |
+
+#-------------------#
+| SaLoHandler class |
+#-------------------#
+-------------------------------------------------------------------------------------
+
+    + static saveToFile(SavableObject object)
+
+    Salva as informações de um objeto com interface SavableObject no arquivo retornado pelo 
+médoto object.getSaveFileName(). As informações a serem salvas são definidas no método
+object.getSaveJson().
+
+-------------------------------------------------------------------------------------
+
+    + static readFromFile(String pathName): JSONObject
+
+    Lê o conteúdo em formato JSON do arquivo em pathName e transforma em um JSONObject.
+
+-------------------------------------------------------------------------------------
+
+    + static toClass(String class_name): Object
+
+    Instancia um objeto da classe class_name.
+
+-------------------------------------------------------------------------------------
+
+    + static toClass(String class_name, Class[] Parameters, Object[] arguments): Object
+
+    Instancia um objeto da classe class_name, passando arguments como parâmetros para o 
+construtor.
+
+-------------------------------------------------------------------------------------
+
+   + static JSONHandler(JSONObject json, String[] keys): Object
+
+   Retorna a informação da chave keys do objeto json.
+
+-------------------------------------------------------------------------------------
+
+#-------------------------#
+| SavableObject interface |
+#-------------------------#
+-------------------------------------------------------------------------------------
+
+    + getSaveJson(): JSONObject
+
+    Retorna o JSONObject do objeto com todas as informações que vão ser salvas no 
+arquivo SaveFile.
+
+-------------------------------------------------------------------------------------
+
+    + getSaveFileName(): String
+
+    Retorna o nome do arquivo SaveFile, onde os dados do SavableObject vão ficar salvos
+
+-------------------------------------------------------------------------------------
+
+    + getAddress(): String
+
+    Retorna o "endereço", o nome da chave que indica a categoria em que o objeto json
+vai ficar guardado.
+
+-------------------------------------------------------------------------------------
+
+    + className(): String
+
+    Retorna o Nome da Classe do Objeto, para que o SaLoHandler possa carregar o objeto,
+usando o método toClass().
+
+-------------------------------------------------------------------------------------
+
+#-----------------#
+| Esquema de Json |
+#-----------------#
+
+{
+    "Address_1": {
+        "Item_1": {
+            "atribute_1": value_1,
+            "atribute_2": value_2
+        },
+        "Item_2": {
+            "atribute_1": value_1,
+            "atribute_2": value_2
+        }
+    },
+    "Address_2": {
+        "Item_1": {
+            "atribute_1": value_1,
+            "atribute_2": value_2
+        },
+        "Item_2": {
+            "atribute_1": value_1,
+            "atribute_2": value_2
+        }
+    }
+}
