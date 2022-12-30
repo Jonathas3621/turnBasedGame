@@ -14,7 +14,7 @@ public abstract class Arma extends Item implements Usable, SavableObject {
     private String arma_address = "armas";
     //protected String[] classes;
 	
-	// Constructor
+	// Constructors
 	public Arma(String nome, double peso, String raridade, ArrayList<String> afinidades, String efeito_Desc, String desc, int dano, int estamina, int velocidade, ArmaType categoria) {
         super(nome, peso, raridade, afinidades, efeito_Desc, desc);
         this.dano = dano;
@@ -24,14 +24,7 @@ public abstract class Arma extends Item implements Usable, SavableObject {
         this.categoria.setReferedArma(this);
     }
 
-    /*public Arma(String arma_fileName) {
-        super(arma_fileName);
-        JSONObject data_arma = SaLoHandler.readFromFile(arma_fileName);
-        this.dano = (int) data_arma.get("dano");
-        this.estamina = (int) data_arma.get("estamina");
-        this.velocidade = (int) data_arma.get("velocidade");
-    }*/
-
+    // Load Json Constructor
     public Arma(String arma_name) {
         super(arma_name, "armas"); // MAgIc wOrD! arma_address/getAddress()
         JSONObject data_arma = SaLoHandler.readFromFile(this.getSaveFileName());
@@ -44,6 +37,7 @@ public abstract class Arma extends Item implements Usable, SavableObject {
         this.categoria.setReferedArma(this);
     }
     
+    // Interface SavableObject
     @Override
     public JSONObject getSaveJson() {
 		JSONObject arma_save = super.getSaveJson();
@@ -59,15 +53,16 @@ public abstract class Arma extends Item implements Usable, SavableObject {
         return this.arma_address;
     }
 
+    @Override
     public String className() {
         return this.getClass().getName();
     }
-	
-    // Use
+
+    // Interface Usable
     public void use(Charac user, Charac target) {
         this.categoria.use(user, target); 
     }
-
+	
 	// Getters e Setters
 	public ArmaType getType() {
         return this.categoria;

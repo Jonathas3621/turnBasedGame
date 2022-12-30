@@ -1,0 +1,15 @@
+        Usable Interface Documentation
+| 28/12/22 |
+
+#------------------#
+| Usable Interface |
+#------------------#
+
+    A interface Usable é implementada por Itens que querem ter a capacidade de serem Usados,
+através do método use().
+
+--------------------------------------------------------------------------------------------
+
+    + use(Charac user, Charac target)
+
+    Usa um efeito, ativado por um usuário user

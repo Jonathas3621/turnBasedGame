@@ -153,6 +153,11 @@ public class Charac implements SavableObject {
     public String className() {
         return this.getClass().getName();
     }
+
+    @Override
+    public String getSaveFileName() {
+        return this.saveFileName;
+    }
     
     // Getters e Setters
     
@@ -292,10 +297,5 @@ public class Charac implements SavableObject {
         int multiplicador = 2;
         if (this.getHolding() != null) multiplicador = this.getHolding().getVelocidade();
         return this.getAgilidade() * multiplicador;
-    }
-    
-    @Override
-    public String getSaveFileName() {
-        return this.saveFileName;
     }
 }

@@ -25,7 +25,7 @@ public class SaLoHandler {
         try {
 			JSONObject object_json_save = object.getSaveJson();
 			JSONObject final_json_save = readFromFile(fileName);
-            String index = object_json_save.getString("nome");
+            String index = object.getNome();
 
             if (!final_json_save.has(object.getAddress()))
                 final_json_save.put(object.getAddress(), new JSONObject());

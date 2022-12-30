@@ -1,19 +1,40 @@
-{"characs": {"Abelha": {
-    "botas": "itens.BotasDeCouro",
-    "inteligencia": 0,
-    "elmo": "itens.ElmoDeCouro",
-    "vida": 20,
-    "agilidade": 1,
-    "nome": "Abelha",
-    "sabedoria": 0,
-    "holding": "itens.Katana",
-    "peitoral": "itens.PeitoralDeAco",
-    "estamina": {
-        "tipo": "estamina.ManaBar",
-        "pontosEstamina": 20
+{"characs": {
+    "Genin": {
+        "botas": "itens.BotasDeCouro",
+        "inteligencia": 10,
+        "elmo": null,
+        "vida": 24,
+        "agilidade": 13,
+        "nome": "Genin",
+        "sabedoria": 12,
+        "holding": "itens.Katana",
+        "peitoral": "itens.PeitoralDeCouro",
+        "estamina": {
+            "tipo": "estamina.ManaBar",
+            "pontosEstamina": 20
+        },
+        "forca": 13,
+        "movimentos": [],
+        "destreza": 12,
+        "constituicao": 11
     },
-    "forca": 2,
-    "movimentos": [],
-    "destreza": 7,
-    "constituicao": 0
-}}}
+    "Abelha": {
+        "botas": "itens.BotasDeCouro",
+        "inteligencia": 0,
+        "elmo": "itens.ElmoDeCouro",
+        "vida": 20,
+        "agilidade": 1,
+        "nome": "Abelha",
+        "sabedoria": 0,
+        "holding": "itens.Katana",
+        "peitoral": "itens.PeitoralDeAco",
+        "estamina": {
+            "tipo": "estamina.ManaBar",
+            "pontosEstamina": 20
+        },
+        "forca": 2,
+        "movimentos": [],
+        "destreza": 7,
+        "constituicao": 0
+    }
+}}

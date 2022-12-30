@@ -1,9 +1,14 @@
                             Gamehandlers Documentation
-| 27/12/22 | 22:43 |
+| 28/12/22 | 07:30 |
 
 #-------------------#
 | SaLoHandler class |
 #-------------------#
+
+    A classe SaLoHandler é utilizada para: Salvar objetos com a interface SavableObject
+em um arquivo.json, para Criar um objeto de uma classe qualquer a partir do nome da
+classe e para Ler arquivos.json e retornar um JSONObject.
+
 -------------------------------------------------------------------------------------
 
     + static saveToFile(SavableObject object)
@@ -71,29 +76,134 @@ usando o método toClass().
 
 -------------------------------------------------------------------------------------
 
-#-----------------#
-| Esquema de Json |
-#-----------------#
+    + getNome(): String
+
+    Retorna o Nome do objeto, usado para identificação do objeto no JSON na hora do
+SaLoHandler.saveToFIle() e salvar ele.
+
+-------------------------------------------------------------------------------------
+
+#-----------------------------------#
+| Esquema genérico do savefile.json |
+#-----------------------------------#
 
 {
     "Address_1": {
-        "Item_1": {
+        "Nome_Item_1": {
             "atribute_1": value_1,
             "atribute_2": value_2
         },
-        "Item_2": {
+        "Nome_Item_2": {
             "atribute_1": value_1,
             "atribute_2": value_2
         }
     },
     "Address_2": {
-        "Item_1": {
+        "Nome_Item_1": {
             "atribute_1": value_1,
             "atribute_2": value_2
         },
-        "Item_2": {
+        "Nome_Item_2": {
             "atribute_1": value_1,
             "atribute_2": value_2
+        }
+    }
+}
+
+-------------------------------------------------------------------------------------
+
+#--------------------------#
+| Exemplo de Implementação |
+#--------------------------#
+
+-------------------------------------------------------------------------------------
+
+    # Exemplo de implementação da interface numa classe Arma
+
+public abstract class Arma extends Item implements Usable, SavableObject {
+    ...
+    // Construtor para carregar a partir do arquivo JSON
+    public Arma(String arma_name) {
+        super(arma_name, "armas"); // MAgIc wOrD! arma_address/getAddress()
+        JSONObject data_arma = SaLoHandler.readFromFile(this.getSaveFileName());    // SaLoHandler usado para ler o savefile.json (No exemplo: savedjson.json)
+        String[] key = {this.getAddress(), arma_name};
+        data_arma = (JSONObject) SaLoHandler.JSONHandler(data_arma, key );      // SaLoHandler usado para encontrar a chave com as informações da Arma
+        this.dano = (int) data_arma.get("dano");
+        this.estamina = (int) data_arma.get("estamina");
+        this.velocidade = (int) data_arma.get("velocidade");
+        this.categoria = (ArmaType) SaLoHandler.toClass(data_arma.getString("tipo"));
+        this.categoria.setReferedArma(this);
+    }
+
+    
+    // SavableObject Interface
+    @Override
+    public JSONObject getSaveJson() {       // Coloca todos os atributos relevantes no JSONObject arma_save
+		JSONObject arma_save = super.getSaveJson();
+        arma_save.put("dano", this.getDano());
+        arma_save.put("estamina", this.getEstamina());
+        arma_save.put("velocidade", this.getVelocidade());
+        arma_save.put("tipo", this.getType().getClass().getName());
+        return arma_save;
+    }
+   
+    @Override
+    public String getAddress() {        // Retorna o Address
+        return this.arma_address;
+    }
+    
+    @Override
+    public String className() {         // Retorna o Nome da Classe
+        return this.getClass().getName();
+    }
+
+    @Override String getNome() {        // Retorna o Nome da Arma
+        return this.nome;
+    }
+    ...
+}
+
+-------------------------------------------------------------------------------------
+
+    # Exemplo do Json na SaveFile = /savedjson/Itens.json
+
+{
+    "armas": {              // Address de "Espada de Madeira" e "Katana"
+        "Espada de Madeira": {  // Mesmo nome do Item
+            "dano": 4,
+            "tipo": "abstractitens.EspadaGrande",
+            "velocidade": 2,
+            "peso": 1,
+            "raridade": "comum",
+            "estamina": 5,
+            "nome": "Espada de Madeira",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "Não corta, mas ainda machuca"
+        },
+        "Katana": {
+            "dano": 13,
+            "tipo": "abstractitens.EspadaGrande",
+            "velocidade": 2,
+            "peso": 0.75,
+            "raridade": "comum",
+            "estamina": 5,
+            "nome": "Katana",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "A verdadeira espada japonesa!"
+        }
+    },
+    "armaduras": {
+        "Botas de Couro": {
+            "tipo": "botas",
+            "peso": 0.5,
+            "raridade": "comum",
+            "protecao": 2,
+            "nome": "Botas de Couro",
+            "afinidades": [],
+            "efeito_desc": "",
+            "desc": "As mais baratas do mercado."
         }
     }
 }
