@@ -1,0 +1,3 @@
+Info:
+Objetivo:
+    O módulo menu vai ser utilizado para criar com facilidade um menu de escolhas para o combate.
