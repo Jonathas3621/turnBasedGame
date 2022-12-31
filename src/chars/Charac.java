@@ -7,6 +7,7 @@ import moves.*;
 import usable.Usable;
 import java.util.*;
 import gamehandlers.*;
+import combate.*;
 
 public class Charac implements SavableObject {
     private String nome;
@@ -18,7 +19,7 @@ public class Charac implements SavableObject {
     private int sabedoria;
     private int agilidade;
     private EstaminaBar estamina;
-    private Move[] movimentos = {};
+    private List<Move> movimentos = new LinkedList<Move>();
     private Arma holding;
     private Armadura botas;
     private Armadura peitoral;
@@ -26,6 +27,7 @@ public class Charac implements SavableObject {
     private List<Item> inventario = new LinkedList<Item>();
     private String saveFileName = "savedjson/Characs.json";
     private String characs_address = "characs";
+    private Team currentTeam = null;
 
     public Charac(String nome, int vida, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int agilidade, EstaminaBar estamina) {
         this.nome = nome;
@@ -83,6 +85,11 @@ public class Charac implements SavableObject {
         } catch (JSONException e) {
             this.holding = null;
         }    
+        JSONArray move_list = atributes.getJSONArray("movimentos");
+        for (int i = 0; i < move_list.length(); i++) {
+            Move move = (Move) SaLoHandler.toClass(move_list.getString(i));
+            this.movimentos.add(move);
+        }
     }
 
     public void attack(Charac target, Usable usable) {
@@ -99,8 +106,8 @@ public class Charac implements SavableObject {
         if (this.vida < 0) this.vida = 0;
     }
     
-    public void print() {
-        System.out.println(" *" + this.nome + " " + this.vida + "hp, equipa " + this.holding.getNome());
+    public String toString() {
+        return " *" + this.nome + " " + this.vida + "hp, equipa " + this.holding.getNome();
     }
     
 
@@ -119,7 +126,7 @@ public class Charac implements SavableObject {
 		char_save.put("agilidade", this.getAgilidade());
 		char_save.put("estamina", this.getEstaminaBar().getSaveJson());
 		List<String> string_moves = new ArrayList<String>();	// Gera uma lista com o nome da classe de cada Move
-		for (Move move : this.getMovimentos()) string_moves.add(move.getNome());
+		for (Move move : this.getMovimentos()) string_moves.add(move.getClass().getName());
 		char_save.put("movimentos", string_moves);
         try {
             char_save.put("holding", this.getHolding().className());
@@ -254,11 +261,11 @@ public class Charac implements SavableObject {
 		return this.holding;
 	}
 	
-	public void setMovimentos(Move[] movimentos) {
+	public void setMovimentos(List<Move> movimentos) {
 		this.movimentos = movimentos;
 	}
 	
-	public Move[] getMovimentos() {
+	public List<Move> getMovimentos() {
 		return this.movimentos;
 	}
 
@@ -297,5 +304,13 @@ public class Charac implements SavableObject {
         int multiplicador = 2;
         if (this.getHolding() != null) multiplicador = this.getHolding().getVelocidade();
         return this.getAgilidade() * multiplicador;
+    }
+
+    public Team getTeam() {
+        return this.currentTeam;
+    }
+
+    public void setTeam(Team team) {
+        this.currentTeam = team;
     }
 }

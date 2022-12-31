@@ -2,6 +2,8 @@ package moves;
 
 import chars.Charac;
 import usable.Usable;
+import gamehandlers.SavableObject;
+import org.json.*;
 
 public abstract class Move implements Usable {
 	private String nome;
@@ -22,5 +24,6 @@ public abstract class Move implements Usable {
 	public void setCusto(int custo) {
 		this.custo = custo;
 	}
+
 }
 

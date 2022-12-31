@@ -7,6 +7,7 @@ import estamina.*;
 import moves.*;
 import usable.Usable;
 import abstractitens.*;
+import combate.*;
 import org.json.*;
 
 // Exemplo de função Main, apenas experimentando
@@ -15,8 +16,8 @@ public class Main {
         Charac geninA = new Charac("Genin");
         Charac geninB = new Charac("Genin");
 
-        List<Charac> teamA = new ArrayList<Charac();
-        List<Charac> teamB = new ArrayList<Charac>();
+        Team teamA = new Team("Team A");
+        Team teamB = new Team("Team B");
 
         teamA.add(geninA);
         teamB.add(geninB);

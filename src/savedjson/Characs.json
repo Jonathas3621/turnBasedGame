@@ -14,7 +14,10 @@
             "pontosEstamina": 20
         },
         "forca": 13,
-        "movimentos": [],
+        "movimentos": [
+            "moves.Fireball",
+            "moves.IceFreeze"
+        ],
         "destreza": 12,
         "constituicao": 11
     },

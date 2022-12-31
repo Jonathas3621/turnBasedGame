@@ -1,3 +1,5 @@
+package combate;
+
 import java.util.*;
 import java.lang.reflect.*;
 import chars.Charac;
@@ -23,7 +25,7 @@ public abstract class Combate {
     }
 
     // Retorna uma lista com os personagens em ordem de iniciativa
-    public List<Charac> getCharacOrder(List<Charac> teamA, List<Charac> teamB) {
+    private List<Charac> getCharacOrder(List<Charac> teamA, List<Charac> teamB) {
         List<Charac> order_list = new ArrayList<Charac>();
         
         for (Charac charac : teamA) {
@@ -36,6 +38,10 @@ public abstract class Combate {
 
         Collections.sort(order_list, new InicComparator());
         return order_list;
+    }
+
+    public List<Charac> getCharacOrder() {
+        return this.getCharacOrder(this.teamA, this.teamB);
     }
 
     // Verifica se algum integrante do time ainda vive
@@ -53,6 +59,7 @@ public abstract class Combate {
         }
         return null;
     }
+
 }
 
 // classe usada por getCharacOrder()
