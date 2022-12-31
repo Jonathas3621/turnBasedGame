@@ -2,8 +2,7 @@ package gamehandlers;
 
 import org.json.*;
 
-public interface SavableObject {
-    public JSONObject getSaveJson();
+public interface SavableObject extends HasSaveJson {
     public String getSaveFileName();
     public String getAddress();
     public String className();
