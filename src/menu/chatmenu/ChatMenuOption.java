@@ -1,4 +1,6 @@
-package menu;
+package menu.chatmenu;
+
+import menu.*;
 
 public class ChatMenuOption extends MenuOption {
     public ChatMenuOption(String nome, Command command) {
@@ -7,8 +9,8 @@ public class ChatMenuOption extends MenuOption {
     }
 
     @Override
-    public void run() {
-        command.action();
+    public void run(Object arg) {
+        command.action(arg);
     }
 
     @Override

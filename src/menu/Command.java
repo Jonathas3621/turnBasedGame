@@ -1,6 +1,6 @@
 package menu;
 
 public abstract class Command {
-    public abstract void action();
+    public abstract boolean action(Object arg);
 }
 

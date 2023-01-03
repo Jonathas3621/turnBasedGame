@@ -73,5 +73,3 @@ public class CombateA extends Combate {
         s.close();
     }
 }
-
-

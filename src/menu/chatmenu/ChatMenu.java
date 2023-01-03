@@ -1,6 +1,7 @@
-package menu;
+package menu.chatmenu;
 
 import java.util.*;
+import menu.*;
 
 public class ChatMenu extends Menu {
 
