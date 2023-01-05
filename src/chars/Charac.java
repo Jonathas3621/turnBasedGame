@@ -105,9 +105,13 @@ public class Charac implements SavableObject {
         this.vida -= damage - this.constituicao;
         if (this.vida < 0) this.vida = 0;
     }
+
+    public void spendPE(int count) {
+        this.setPE(this.getPE() - count);
+    }
     
     public String toString() {
-        return " *" + this.nome + " " + this.vida + "hp, equipa " + this.holding.getNome();
+        return " *" + this.nome + " " + this.vida + "hp " + this.getPE() + "pe";
     }
     
 
