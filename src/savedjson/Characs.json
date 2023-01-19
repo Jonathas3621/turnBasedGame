@@ -36,7 +36,9 @@
             "pontosEstamina": 20
         },
         "forca": 2,
-        "movimentos": [],
+        "movimentos": [
+            "moves.Fireball"
+        ],
         "destreza": 7,
         "constituicao": 0
     }

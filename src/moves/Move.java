@@ -2,7 +2,7 @@ package moves;
 
 import chars.Charac;
 import usable.*;
-import gamehandlers.SavableObject;
+import gamehandlers.HasSaveJson;
 import org.json.*;
 import java.util.*;
 
@@ -12,11 +12,11 @@ public abstract class Move implements Usable {
 	private String tipo;
 	private List<Condition> conditions = new LinkedList<Condition>();
 	
-	final public void use(Charac user, Charac target) {
+	public void use(Charac user, Charac target) {
 		if (!hasStamina(user)) return;
 		if (!canUse(user, target)) return;
 		user.spendPE(custo); 
-		effect(use, target);
+		effect(user, target);
 	}
 	
 	protected abstract void effect(Charac user, Charac target);
@@ -55,5 +55,4 @@ public abstract class Move implements Usable {
 	public void setCusto(int custo) {
 		this.custo = custo;
 	}
-
 }

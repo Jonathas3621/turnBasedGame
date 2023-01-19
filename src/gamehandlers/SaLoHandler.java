@@ -84,6 +84,7 @@ public class SaLoHandler {
 
     public static Object toClass(String class_name) {
         try {
+            @SuppressWarnings("rawtypes")
     		Class[] parameters = {};
     		@SuppressWarnings("rawtypes")
 			Class classe = Class.forName(class_name);
@@ -97,6 +98,7 @@ public class SaLoHandler {
     }
 
     // toClass with arguments
+    @SuppressWarnings("rawtypes")
     public static Object toClass(String class_name, Class[] parameters, Object[] arguments) {
         try {
             @SuppressWarnings("rawtypes")

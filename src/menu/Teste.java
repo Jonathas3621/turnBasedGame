@@ -1,23 +1,28 @@
 package menu;
 
 import java.util.*;
+import chars.Charac;
 import menu.chatmenu.*;
 
 public class Teste {
     public static void main(String[] args) {
-        ChatMenuOption opção_attack = new ChatMenuOption("Atacar", new GenericCommand("ataquei"));
-        ChatMenuOption opção_walk = new ChatMenuOption("Andar", new GenericCommand("andei"));
-        ChatMenuOption opção_run = new ChatMenuOption("Correr", new GenericCommand("fugi"));
-        ChatMenuOption opção_magic = new ChatMenuOption("Magias",new GenericCommand("conjurei magia"));
-       
-        LinkedList<MenuOption> lista = new LinkedList<MenuOption>();
-        lista.add(opção_attack);
-        lista.add(opção_walk);
-        lista.add(opção_run);
-        lista.add(opção_magic);
+        Charac genin = new Charac("Genin");
 
-        ChatMenu menu = new ChatMenu(lista);
-        menu.open();
+        Menu menu = new ChatMenu("Menu");
+        Menu menuFísico = new ChatMenu("Físico");
+        Menu menuMágico = new MovesMenu(genin);
+
+        menuFísico.add(new ChatMenuOption("Andar", new GenericCommand("Andando!")));
+        menuFísico.add(new ChatMenuOption("Esconder", new GenericCommand("Escondendo!")));
+
+        menuMágico.add(new ChatMenuOption("Bola de Fogo", new GenericCommand("Halohar Infigare!")));
+        menuMágico.add(new ChatMenuOption("Invisibilidade Caseira", new GenericCommand("Agora você me vê, agora não vê mais!")));
+
+        menu.add(menuFísico);
+        menu.add(menuMágico);
+
+        Object retorno = menu.open();
+        System.out.println(retorno);
     }
 }
 
@@ -27,9 +32,9 @@ class GenericCommand extends Command {
         this.frase = frase;
     }
     
-    public boolean action(Object arg) {
+    @Override
+    public void action(Object[] arg) {
         System.out.println(frase);
-        return true;
     }
 }
 

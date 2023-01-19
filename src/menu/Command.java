@@ -1,6 +1,5 @@
 package menu;
 
-public abstract class Command {
-    public abstract boolean action(Object arg);
+public class Command {
+    public void action(Object[] args) {}
 }
-

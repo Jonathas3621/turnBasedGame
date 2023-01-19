@@ -92,7 +92,7 @@ public class Charac implements SavableObject {
         }
     }
 
-    public void attack(Charac target, Usable usable) {
+    public void doAction(Charac target, Usable usable) {
         if (usable != null) usable.use(this, target);   			
         System.out.println(this.getNome() + " ataca " + target.getNome());
     }

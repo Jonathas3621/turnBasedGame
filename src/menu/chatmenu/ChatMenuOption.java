@@ -2,19 +2,14 @@ package menu.chatmenu;
 
 import menu.*;
 
-public class ChatMenuOption extends MenuOption {
-    public ChatMenuOption(String nome, Command command) {
+public class ChatMenuOption extends Option {
+    public ChatMenuOption(String nome, Object content) {
         this.nome = nome;
-        this.command = command;
+        this.content = content;
     }
 
     @Override
-    public void run(Object arg) {
-        command.action(arg);
-    }
-
-    @Override
-    public String getNome() {
-        return this.nome;
+    public Object run(Object[] args) {
+        return content;
     }
 }

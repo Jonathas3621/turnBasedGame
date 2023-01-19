@@ -14,7 +14,7 @@ import org.json.*;
 public class Main {
     public static void main(String[] args) {
         Charac geninA = new Charac("Genin");
-        Charac geninB = new Charac("Genin");
+        Charac geninB = new Charac("Abelha");
 
         Team teamA = new Team("Team A");
         Team teamB = new Team("Team B");
