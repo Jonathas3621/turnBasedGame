@@ -23,54 +23,23 @@ public class CombateA extends Combate {
             // Decide a ordem de ataque baseado na iniciativa 
             ordem = getCharacOrder();  
 
-            System.out.println("Ordem de batalha");
-            for (Charac player : ordem) {   
-                System.out.println(ordem.indexOf(player) + ". " + player.getTeam().getNome() + " " + player.toString());
-            }
-            System.out.println();
-
             // Cada personagem ataca em sua vez
             for (Charac charac : ordem) {   
-                Usable selectedAction;
-                Charac selectedTarget;
-                
                 if (!charac.isAlive()) continue;
+                System.out.println("Ordem de batalha");
+
+                for (Charac player : ordem) {   
+                    System.out.println(ordem.indexOf(player) + ". " + player.getTeam().getNome() + " " + player.toString());
+                }
+                System.out.println();
+
                 System.out.println("Vez de " + ordem.indexOf(charac) + ". " + charac.getNome()); 
 
-                selectedAction = (Usable) openCharacsActionMenu(charac);
-                selectedTarget = (Charac) openTargetsMenu(ordem);
-                
-            /*  System.out.println("Escolha sua ação: [attack|magic]");
-             *  String acao = s.nextLine();
-             *  String attack = "";
-             *  int magic = -1;
-             *  if (acao.equals("attack")) {
-             *      System.out.println("Escolha o Attack: [arma]");
-             *      attack = s.nextLine();
-             *  } else if (acao.equals("magic")) {
-             *      System.out.println("Escolha a Magia:");
-             *      List<Move> moves = charac.getMovimentos();
-             *      for (Move magia : moves) {
-             *          System.out.println(moves.indexOf(magia) + " " + magia.getNome());
-             *      }
-             *      magic = s.nextInt();
-             *  }
-             *  System.out.println("Digite o ID do alvo:");
-             *  int id = s.nextInt();
-             *  Charac alvo = ordem.get(id);
-             *  System.out.println();
-             *
-             *  Usable usable = null;
-             *  if (acao.equals("attack")) {
-             *      if (attack.equals("arma")) {
-             *          usable = charac.getHolding();
-             *      }
-             *  } else if (acao.equals("magic")) {
-             *      usable = charac.getMovimentos().get(magic);
-             *  }
-             */
-                //charac.doAction(selectedTarget, selectedAction); 
-                //if (!selectedTarget.isAlive()) System.out.println(selectedTarget.getNome() + " faleceu");
+                Usable selectedAction = (Usable) openCharacsActionMenu(charac);
+                Charac selectedTarget = (Charac) openTargetsMenu(ordem);
+
+                charac.doAction(selectedTarget, selectedAction);
+                if (!selectedTarget.isAlive()) System.out.println(selectedTarget.getNome() + " faleceu");
             }
         }
         System.out.println("Uma batalha sangrenta");
