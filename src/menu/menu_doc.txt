@@ -1,0 +1,85 @@
+								Menu Documentation
+| 22/01/22 | 00:10 |
+
+#--------------#
+| Menu package |
+#--------------#
+
+	O pacote menu possui as classes abstratas Menu e Option, que funcionam em
+como uma composition, para gerar Menus interativos com o usuário. O pacote
+inclui também a class Command, que é utilizada para guardar uma função. 
+	As classes Menu e Option são abstratas, assim, o pacote Menu inclui o
+subpacote chatmenu, com as classes ChatMenu e ChatMenuOption, dentre outras, que
+são implementações de Menu e Option. As classes desse pacote sim são classes
+concretas, e criam um menu pelo chat.
+
+---------------------------------------------------------------------------------
+
+#-----------------------#
+| Option abstract class |
+#-----------------------#
+
+public abstract class Option
+
+	A classe abstrata Option possui o atributo "content" do tipo Object, esse
+atributo representa o Conteúdo da opção, e é retornado quando chamamos o método
+run(). Além disso, ela possui o atributo "nome", do tipo String, que é o
+identificador da opção, e o atributo "upper", do tipo Menu, que guarda qual Menu
+a opção está associada.
+
+---------------------------------------------------------------------------------
+
+	+ abstract run(Object[] args): Object
+
+	Método chamado pelo Menu em que a opção está anexada. Esse método deve
+retornar o objeto que está dentro da Option.
+
+---------------------------------------------------------------------------------
+
+	+ getNome(): String
+
+	Retorna o nome da Option.
+
+---------------------------------------------------------------------------------
+	
+	+ getContent(): Object
+
+	Retorna o conteúdo, o objeto que está dentro da Option.
+
+---------------------------------------------------------------------------------
+
+	+ setUpper(Menu upper)
+
+	Define qual é o menu ao qual a Option está anexada.
+
+---------------------------------------------------------------------------------
+
+#---------------------#
+| Menu abstract class |
+#---------------------#
+
+public abstract class Menu extends Option
+
+	A classe abstrata Menu, guarda uma lista de Options, e herda de Option,
+podendo então ser colocada como uma opção de um outro Menu, criando então um
+submenu. Os Menus tem um método públic open(), que abre o menu, e retorna o
+Object escolhido, esse é precisamente o content que fica guardado dentro das
+Options. A Option passa para o Menu superior, que vai passando para o superior
+até chegar no topo da hierarquia e retornar o Objeto escolhido.
+
+---------------------------------------------------------------------------------
+
+	+ abstract open(): Object
+
+	O método open abre o menu, mostrando as opções e permitindo que o usuário
+escolha sua opção, podendo ser uma Option ou um Menu. O método Open deve chamar
+o método run() da Option escolhida. Que retorna um Object. Esse método é
+chamadoo pelo programa, para abrir o primeiro Menu.
+
+---------------------------------------------------------------------------------
+
+	+ abstract open(Menu upperMenu): Object
+	
+	Esse método open() é chamado por outros menus que estão abrindo este, como
+um sub-menu. O menu de cima passa a si mesmo como upperMenu, para que este Menu
+saiba qual Menu está acima dele, para o botão de Voltar funcionar.

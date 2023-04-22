@@ -12,13 +12,14 @@ public class ChatMenu extends Menu {
         }
 
         @Override
-        public Object run(Object[] args) {
+        public Object select(Menu selector) {
             return upperMenu.open();
         }
     }
 
     public ChatMenu(String nome) {
         this.nome = nome;
+        this.keywords.add(this.nome);
     }
 
     public ChatMenu(String nome, List<Option> options) {
@@ -28,15 +29,13 @@ public class ChatMenu extends Menu {
 
     @Override
     public Object open() { //Abre o próprio menu, apresentando as opções e perguntando qual o usuário deseja
+        System.out.println(this.nome);
         list();
         Option selectedOption = askOption();
         if (selectedOption instanceof Menu) {
-            return run(selectedOption, new Object[]{this});
+            return ((Menu) selectedOption).open(this);
         }
-        /*if (selectedOption instanceof VoltarOption) {
-            return run(selectedOption, new Object[]{this.upper});
-        }*/ 
-        return run(selectedOption, new Object[]{});
+        return select(selectedOption);
     }
 
     @Override
@@ -47,25 +46,29 @@ public class ChatMenu extends Menu {
     }
 
     private void list() { //Lista todas as Optionts
+        int i = 1;
         for (Option option : options) {
-            System.out.println(option.getNome());
+            System.out.println("(" + i + ") " + option.getNome()); i++;
         }
         if (opçãoDeVoltar != null)
             System.out.println(opçãoDeVoltar.getNome());
+        if (textoExtra != null) {
+            System.out.println(textoExtra);   // Print algo extra, no caso, será uma curiosidade
+        }
     }
     
     private Option askOption() {    //Pergunta ao usuário qual opção ele deseja executar
         Scanner scanner = new Scanner(System.in);
         Option selectedOption = null;
         while (selectedOption == null) {
-            //if (!scanner.hasNextLine())
-            //    continue;
             System.out.println("Digite sua escolha: ");
             String name_selected_option = scanner.nextLine();
-            for (Option option : options) {
-                if (option.getNome().equals(name_selected_option)) {
-                    selectedOption = option;
-                    break;
+            for (Option option : options) { //Para cada opção
+                for (String keyword : option.getKeywords()) {   //Procura em cada keyword
+                    if (name_selected_option.equals(keyword)) { //Se o digitado corresponde à keyword
+                        selectedOption = option;
+                        break;
+                    }
                 }
             }
             if (opçãoDeVoltar != null) {
@@ -77,12 +80,11 @@ public class ChatMenu extends Menu {
             if (selectedOption == null)
                 System.out.println("Opção inválida");
         }
-        //scanner.close();
         return selectedOption;
     }
    
     @Override
-    protected Object run(Option option, Object[] args) {    //Executa a opção selecionada
-        return option.run(args);
+    protected Object select(Option option) {    //Executa a opção selecionada
+        return option.select(this);
     }
 }
