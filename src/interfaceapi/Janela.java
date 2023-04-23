@@ -165,4 +165,13 @@ public class Janela {
 	return new Janela(size[0], size[1], pos[0], pos[1], conteudo);
     }
 
+    public void update() {
+	for (Janela subJanela : subjanelas) {
+	    subJanela.update();
+	}
+	updateAction();
+    }
+
+    protected abstract void updateAction();
+
 }
