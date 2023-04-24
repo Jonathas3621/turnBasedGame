@@ -1,0 +1,28 @@
+Pensamentos do dia 23/04/23:
+
+Pensando em desenvolver coisas relacionadas à interface gráfica do Jogo.
+
+    Em primeiro lugsar começei a fazer a interface-api, para desenhar Janelas no terminal.
+
+    To pensando em fazer um programa de inventário, onde mostre todos os itens de um inventário.
+
+    Pensando também, claro, em utilizar para criar uma interface visual para o programa de
+combate, que mostre de maneira agradável e organizada as informações relevantes dos personagens,
+são elas: o Nome dos personagens, Vida, Mana, Itens, Magias, Armas, Armaduras, e seus Stats (Força,
+Destreza, Inteligência...). Também deve mostrar de maneira agradável o que está acontecendo na
+Batalha, como quem usou tal ataque, qual o dano causado, quem foi atacado...
+
+    No processo de como fazer isso, percebi que várias das funcionalidades de interface gráfica
+estão distribuidas pelas classes do jogo. Na classe Combate está descrito como as informações 
+sobre os personagens é apresentada, na classe Menu está sobre a aparência do menu de opções.
+A função dessas classes será de avisar quando que deve aparecer as informações dos Personagens,
+quando deve aparecer as opções de movimentos, quando e quais informações da batalha devem aparecer.
+Mas "COMO elas aparecerão...", isso será delegado para a classe UiManager.
+
+    Tendo em vista qual a filosofia da implementação, sobre a implementação em sí, penso em fazer um
+singletone, ou utilizar métodos static. A questão é que é necessário que todas as classes tenham
+acesso ao UiManager, para chamar as funções do tipo: printBattleUI(), printMovesOptions(),
+changeBattleText(). Basicamente, onde tiver System.out.println() no código das outras classes troca
+por essas funções do UiManager.
+    
+    -Lucas V.

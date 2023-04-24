@@ -8,6 +8,7 @@ public class Janela {
     public int[] pos = {0, 0};
     private List<Janela> subjanelas = new ArrayList<Janela>();
     private Janela upperJanela = null;
+    public boolean transparency = false;
 
     private char border_corner = '@'; 
     private char border_hor = '-'; 
@@ -138,6 +139,10 @@ public class Janela {
 	for (int j=0; j<janelaInterna.size[1]; j++) {
 	    for (int i=0; i<janelaInterna.size[0]; i++) {
 		char caracter = janelaInterna.getChar(i, j);
+		if (caracter == ' ' && janelaInterna.transparency) {
+		    output.setChar(null, offset[0]+i, offset[1]+j); //voltar daqui
+		    continue;
+		}
 		output.setChar(caracter, offset[0]+i, offset[1]+j);
 	    }
 	}
@@ -172,6 +177,16 @@ public class Janela {
 	updateAction();
     }
 
-    protected abstract void updateAction();
+    protected void updateAction() {
+
+    }
+
+    public void writeTitle(String title) {
+	this.write(title, (int) (size[0]-title.length())/2, 0);
+    }
+
+    public void writeCenter(String string) {
+	this.write(string, (int) (size[0]-string.length())/2, (int) (size[1]/2));
+    }
 
 }
